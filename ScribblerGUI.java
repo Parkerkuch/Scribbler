@@ -13,6 +13,8 @@ public class ScribblerGUI extends JPanel{
     private JPanel colors;
     private JPanel canvas;
 
+    private JPanel toolbar;
+
     //labels for panels
     private JLabel toolLabel;
     private JLabel shapeLabel;
@@ -55,6 +57,7 @@ public class ScribblerGUI extends JPanel{
         scribFrame.setLayout(new GridLayout(2,4));
 
         //Panels
+        toolbar = new JPanel();
         tools = new JPanel();
         shapes = new JPanel();
         colors = new JPanel();
@@ -69,10 +72,11 @@ public class ScribblerGUI extends JPanel{
         colors.add(colorLabel);
 
         //Add Panels to frame
-        scribFrame.add(tools);
-        scribFrame.add(shapes);
-        scribFrame.add(colors);
-        scribFrame.add(canvas);
+        scribFrame.add(toolbar); //north position?
+        toolbar.add(tools);
+        toolbar.add(shapes);
+        toolbar.add(colors);
+        scribFrame.add(canvas); //south position?
 
         //fileMenu
         fileMenu = new JMenu("File");
