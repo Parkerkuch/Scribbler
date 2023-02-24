@@ -55,9 +55,9 @@ public class ScribblerGUI extends JPanel{
         scribFrame = new JFrame("Scribbler");
         scribFrame.setPreferredSize(new Dimension(850, 650));
         //todo: figure out how to properly implement layout
-        //scribFrame.setLayout(new GridLayout(2,4));
         scribFrame.setResizable(false);
         scribFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
 
         //Panels
         toolbar = new JPanel();
@@ -82,13 +82,23 @@ public class ScribblerGUI extends JPanel{
         scribFrame.add(canvas); //south position?
 
 
+        toolbar.setLayout(new GridLayout(1,3));
+
         //Border creation and implementation for canvas
         Border blackline = BorderFactory.createLineBorder(Color.black);
-        canvas.setSize( new Dimension(850, 600));
+        canvas.setSize( new Dimension(850, 550));
         canvas.setBorder(blackline);
 
-        toolbar.setSize(new Dimension(850,50));
+        toolbar.setSize(new Dimension(850,100));
         toolbar.setBorder(blackline);
+
+
+        tools.setPreferredSize(new Dimension(340,100));
+        tools.setLocation(0,0);
+
+        tools.setBorder(blackline);
+        shapes.setBorder(blackline);
+        colors.setBorder(blackline);
 
 
         //fileMenu
