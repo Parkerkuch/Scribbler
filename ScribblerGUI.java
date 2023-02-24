@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -77,6 +78,17 @@ public class ScribblerGUI extends JPanel{
         toolbar.add(shapes);
         toolbar.add(colors);
         scribFrame.add(canvas); //south position?
+
+        //canvas.setPreferredSize(new Dimension(850,162));
+
+        //Border creation and implementation for canvas
+        Border blackline = BorderFactory.createLineBorder(Color.black);
+        canvas.setPreferredSize( new Dimension(850, 488));
+        canvas.setBorder(blackline);
+
+        toolbar.setPreferredSize(new Dimension(850,162));
+        toolbar.setBorder(blackline);
+
 
         //fileMenu
         fileMenu = new JMenu("File");
