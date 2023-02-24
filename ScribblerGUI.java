@@ -73,16 +73,15 @@ public class ScribblerGUI extends JPanel{
         tools.add(toolLabel);
         shapes.add(shapeLabel);
         colors.add(colorLabel);
+        //grid layout for toolbar
+        toolbar.setLayout(new GridLayout());
 
         //Add Panels to frame
-        scribFrame.add(toolbar); //north position?
+        scribFrame.add(toolbar);
         toolbar.add(tools);
         toolbar.add(shapes);
         toolbar.add(colors);
-        scribFrame.add(canvas); //south position?
-
-
-        toolbar.setLayout(new GridLayout(1,3));
+        scribFrame.add(canvas);
 
         //Border creation and implementation for canvas
         Border blackline = BorderFactory.createLineBorder(Color.black);
@@ -91,7 +90,6 @@ public class ScribblerGUI extends JPanel{
 
         toolbar.setSize(new Dimension(850,100));
         toolbar.setBorder(blackline);
-
 
         tools.setPreferredSize(new Dimension(340,100));
         tools.setLocation(0,0);
