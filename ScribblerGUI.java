@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JToolBar;
-import java.awt.Canvas;
 import java.awt.Color;
 import javax.swing.BoxLayout;
 import java.awt.GridLayout;
@@ -30,6 +29,7 @@ import java.awt.SystemColor;
 import javax.swing.JSlider;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
+import javax.swing.JRadioButtonMenuItem;
 
 public class ScribblerGUI extends JFrame {
 
@@ -55,13 +55,11 @@ public class ScribblerGUI extends JFrame {
      * Create the frame.
      */
     public ScribblerGUI() {
-        //frame settings
         setBackground(Color.WHITE);
         setTitle("Scribbler");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 852, 680);
 
-        //file menu
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
@@ -77,16 +75,17 @@ public class ScribblerGUI extends JFrame {
         JMenuItem openCanvas = new JMenuItem("Open Canvas");
         fileMenu.add(openCanvas);
 
-        //pane for all the components
+        JMenuItem menuEscape = new JMenuItem("Exit Menu");
+        menuEscape.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+        fileMenu.add(menuEscape);
         scribPane = new JPanel();
         scribPane.setBackground(new Color(230, 230, 250));
         scribPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(scribPane);
 
-        //creating toolbar
         JPanel toolbar = new JPanel();
-        toolbar.setBounds(0, 0, 838, 105);
+        toolbar.setBounds(-10, 0, 849, 105);
         toolbar.setBackground(new Color(255, 255, 240));
         toolbar.setBorder(new LineBorder(new Color(192, 192, 192)));
 
@@ -108,7 +107,6 @@ public class ScribblerGUI extends JFrame {
         colorLabel.setHorizontalAlignment(SwingConstants.CENTER);
         colorLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
-        //slider for zooming in and out
         JSlider zoomSlider = new JSlider();
         zoomSlider.setBounds(600, 582, 200, 22);
         zoomSlider.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -120,22 +118,9 @@ public class ScribblerGUI extends JFrame {
         minusZoom.setBounds(545, 582, 45, 13);
         minusZoom.setHorizontalAlignment(SwingConstants.TRAILING);
 
-        //actual canvas to draw on
         JPanel canvasPanel = new JPanel();
-        canvasPanel.setBounds(5, 124, 828, 448);
+        canvasPanel.setBounds(10, 115, 818, 448);
         canvasPanel.setBackground(new Color(255, 255, 255));
-        GroupLayout gl_canvasPanel = new GroupLayout(canvasPanel);
-        gl_canvasPanel.setHorizontalGroup(
-                gl_canvasPanel.createParallelGroup(Alignment.LEADING)
-                        .addGap(0, 808, Short.MAX_VALUE)
-        );
-        gl_canvasPanel.setVerticalGroup(
-                gl_canvasPanel.createParallelGroup(Alignment.LEADING)
-                        .addGap(0, 448, Short.MAX_VALUE)
-        );
-
-        //adding components to respective panels
-        canvasPanel.setLayout(gl_canvasPanel);
         scribPane.setLayout(null);
         scribPane.add(minusZoom);
         scribPane.add(zoomSlider);
@@ -146,7 +131,6 @@ public class ScribblerGUI extends JFrame {
         toolbar.add(shapeLabel);
         toolbar.add(colorLabel);
 
-        //vertical bar separators in toolbar
         JSeparator barSeparator = new JSeparator();
         barSeparator.setOrientation(SwingConstants.VERTICAL);
         barSeparator.setBackground(SystemColor.activeCaption);
@@ -161,5 +145,15 @@ public class ScribblerGUI extends JFrame {
         barSeparator2.setBounds(528, 0, 7, 105);
         toolbar.add(barSeparator2);
         scribPane.add(canvasPanel);
+        GroupLayout gl_canvasPanel = new GroupLayout(canvasPanel);
+        gl_canvasPanel.setHorizontalGroup(
+                gl_canvasPanel.createParallelGroup(Alignment.LEADING)
+                        .addGap(0, 828, Short.MAX_VALUE)
+        );
+        gl_canvasPanel.setVerticalGroup(
+                gl_canvasPanel.createParallelGroup(Alignment.LEADING)
+                        .addGap(0, 448, Short.MAX_VALUE)
+        );
+        canvasPanel.setLayout(gl_canvasPanel);
     }
 }
