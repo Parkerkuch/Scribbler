@@ -1,131 +1,155 @@
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-public class ScribblerGUI extends JPanel{
+import java.awt.EventQueue;
 
-    //main window
-    private JFrame scribFrame;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JToolBar;
+import java.awt.Canvas;
+import java.awt.Color;
+import javax.swing.BoxLayout;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.FlowLayout;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.UIManager;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.SystemColor;
+import javax.swing.JSlider;
+import javax.swing.JButton;
+import javax.swing.JSeparator;
 
-    //Panel for each section
-    private JPanel tools;
-    private JPanel shapes;
-    private JPanel colors;
-    private JPanel canvas;
+public class ScribblerGUI extends JFrame {
 
-    private JPanel toolbar;
-
-    //labels for panels
-    private JLabel toolLabel;
-    private JLabel shapeLabel;
-    private JLabel colorLabel;
-    private JLabel sizeLabel;
-    // todo: add more labels for current selected options?
-
-    //for open/save/new canvas
-    private JMenu fileMenu;
-    private JMenuItem newCanvas;
-    private JMenuItem saveItem;
-    private JMenuItem openItem;
-
-    //TODO: private ButtonListener buttonListener; ??
-
-    //JButtons for tools
-    private JButton draw;
-    private JButton eraser;
-    private JButton bucket;
-
-    //TODO: shape buttons?
-
-    //TODO: color implementation
+    private JPanel scribPane;
 
     /**
-     * Constructor for GUI
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    ScribblerGUI frame = new ScribblerGUI();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * Create the frame.
      */
     public ScribblerGUI() {
-        create();
-    }
+        setBackground(Color.WHITE);
+        setTitle("Scribbler");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 852, 680);
 
-    /**
-     * Method to create the GUI
-     */
-    public void create() {
-        //create frame
-        scribFrame = new JFrame("Scribbler");
-        scribFrame.setPreferredSize(new Dimension(850, 650));
-        //todo: figure out how to properly implement layout
-        scribFrame.setResizable(false);
-        scribFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-
-        //Panels
-        toolbar = new JPanel();
-        tools = new JPanel();
-        shapes = new JPanel();
-        colors = new JPanel();
-        canvas = new JPanel();
-
-        //PanelLabels
-        toolLabel = new JLabel("Tools");
-        shapeLabel = new JLabel("Shapes");
-        colorLabel = new JLabel("Colors");
-        tools.add(toolLabel);
-        shapes.add(shapeLabel);
-        colors.add(colorLabel);
-        //grid layout for toolbar
-        toolbar.setLayout(new GridLayout());
-
-        //Add Panels to frame
-        scribFrame.add(toolbar);
-        toolbar.add(tools);
-        toolbar.add(shapes);
-        toolbar.add(colors);
-        scribFrame.add(canvas);
-
-        //Border creation and implementation for canvas
-        Border blackline = BorderFactory.createLineBorder(Color.black);
-        canvas.setSize( new Dimension(850, 550));
-        canvas.setBorder(blackline);
-
-        toolbar.setSize(new Dimension(850,100));
-        toolbar.setBorder(blackline);
-
-        tools.setPreferredSize(new Dimension(340,100));
-        tools.setLocation(0,0);
-
-        tools.setBorder(blackline);
-        shapes.setBorder(blackline);
-        colors.setBorder(blackline);
-
-
-        //fileMenu
-        fileMenu = new JMenu("File");
-        newCanvas = new JMenuItem("New Canvas");
-        saveItem = new JMenuItem("Save Canvas");
-        openItem = new JMenuItem("Open Canvas");
-
-        fileMenu.add(newCanvas);
-        fileMenu.add(saveItem);
-        fileMenu.add(openItem);
-
-        //Action Listeners for Menu
-        //newCanvas.addActionListener(buttonListener::<action>);
-        //saveItem.addActionListener(buttonListener::<action>);
-        //openItem.addActionListener(buttonListener::<action>);
-
-        //Creates menu to hold fileMenu
         JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+        JMenu fileMenu = new JMenu("File");
         menuBar.add(fileMenu);
-        scribFrame.setJMenuBar(menuBar);
 
+        JMenuItem newCanvas = new JMenuItem("New Canvas");
+        fileMenu.add(newCanvas);
 
-        scribFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        scribFrame.pack();
-        scribFrame.setVisible(true);
-    }
+        JMenuItem saveCanvas = new JMenuItem("Save Canvas");
+        fileMenu.add(saveCanvas);
 
-    public static void main(String[] args) {
-        ScribblerGUI scrib = new ScribblerGUI();
+        JMenuItem openCanvas = new JMenuItem("Open Canvas");
+        fileMenu.add(openCanvas);
+        scribPane = new JPanel();
+        scribPane.setBackground(new Color(230, 230, 250));
+        scribPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+        setContentPane(scribPane);
+
+        JPanel toolbar = new JPanel();
+        toolbar.setBounds(0, 0, 838, 105);
+        toolbar.setBackground(new Color(255, 255, 240));
+        toolbar.setBorder(new LineBorder(new Color(192, 192, 192)));
+
+        JLabel toolLabel = new JLabel("Tools");
+        toolLabel.setBounds(86, 84, 74, 21);
+        toolLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+        toolLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        toolLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+
+        JLabel shapeLabel = new JLabel("Shapes");
+        shapeLabel.setBounds(355, 84, 74, 21);
+        shapeLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+        shapeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        shapeLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+
+        JLabel colorLabel = new JLabel("Colors");
+        colorLabel.setBounds(666, 84, 74, 21);
+        colorLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+        colorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        colorLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+
+        JSlider zoomSlider = new JSlider();
+        zoomSlider.setBounds(600, 582, 200, 22);
+        zoomSlider.setBorder(new EmptyBorder(0, 0, 0, 0));
+
+        JLabel plusZoom = new JLabel("+");
+        plusZoom.setBounds(804, 582, 35, 13);
+
+        JLabel minusZoom = new JLabel("-");
+        minusZoom.setBounds(545, 582, 45, 13);
+        minusZoom.setHorizontalAlignment(SwingConstants.TRAILING);
+
+        JPanel canvasPanel = new JPanel();
+        canvasPanel.setBounds(5, 124, 828, 448);
+        canvasPanel.setBackground(new Color(255, 255, 255));
+        GroupLayout gl_canvasPanel = new GroupLayout(canvasPanel);
+        gl_canvasPanel.setHorizontalGroup(
+                gl_canvasPanel.createParallelGroup(Alignment.LEADING)
+                        .addGap(0, 808, Short.MAX_VALUE)
+        );
+        gl_canvasPanel.setVerticalGroup(
+                gl_canvasPanel.createParallelGroup(Alignment.LEADING)
+                        .addGap(0, 448, Short.MAX_VALUE)
+        );
+        canvasPanel.setLayout(gl_canvasPanel);
+        scribPane.setLayout(null);
+        scribPane.add(minusZoom);
+        scribPane.add(zoomSlider);
+        scribPane.add(plusZoom);
+        scribPane.add(toolbar);
+        toolbar.setLayout(null);
+        toolbar.add(toolLabel);
+        toolbar.add(shapeLabel);
+        toolbar.add(colorLabel);
+
+        JSeparator barSeparator = new JSeparator();
+        barSeparator.setOrientation(SwingConstants.VERTICAL);
+        barSeparator.setBackground(SystemColor.activeCaption);
+        barSeparator.setForeground(SystemColor.activeCaption);
+        barSeparator.setBounds(250, 0, 7, 105);
+        toolbar.add(barSeparator);
+
+        JSeparator barSeparator2 = new JSeparator();
+        barSeparator2.setOrientation(SwingConstants.VERTICAL);
+        barSeparator2.setForeground(SystemColor.activeCaption);
+        barSeparator2.setBackground(SystemColor.activeCaption);
+        barSeparator2.setBounds(528, 0, 7, 105);
+        toolbar.add(barSeparator2);
+        scribPane.add(canvasPanel);
     }
 }
