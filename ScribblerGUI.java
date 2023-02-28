@@ -55,11 +55,13 @@ public class ScribblerGUI extends JFrame {
      * Create the frame.
      */
     public ScribblerGUI() {
+        //frame settings
         setBackground(Color.WHITE);
         setTitle("Scribbler");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 852, 680);
 
+        //file menu
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
@@ -74,12 +76,15 @@ public class ScribblerGUI extends JFrame {
 
         JMenuItem openCanvas = new JMenuItem("Open Canvas");
         fileMenu.add(openCanvas);
+
+        //pane for all the components
         scribPane = new JPanel();
         scribPane.setBackground(new Color(230, 230, 250));
         scribPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(scribPane);
 
+        //creating toolbar
         JPanel toolbar = new JPanel();
         toolbar.setBounds(0, 0, 838, 105);
         toolbar.setBackground(new Color(255, 255, 240));
@@ -103,6 +108,7 @@ public class ScribblerGUI extends JFrame {
         colorLabel.setHorizontalAlignment(SwingConstants.CENTER);
         colorLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
+        //slider for zooming in and out
         JSlider zoomSlider = new JSlider();
         zoomSlider.setBounds(600, 582, 200, 22);
         zoomSlider.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -114,6 +120,7 @@ public class ScribblerGUI extends JFrame {
         minusZoom.setBounds(545, 582, 45, 13);
         minusZoom.setHorizontalAlignment(SwingConstants.TRAILING);
 
+        //actual canvas to draw on
         JPanel canvasPanel = new JPanel();
         canvasPanel.setBounds(5, 124, 828, 448);
         canvasPanel.setBackground(new Color(255, 255, 255));
@@ -126,6 +133,8 @@ public class ScribblerGUI extends JFrame {
                 gl_canvasPanel.createParallelGroup(Alignment.LEADING)
                         .addGap(0, 448, Short.MAX_VALUE)
         );
+
+        //adding components to respective panels
         canvasPanel.setLayout(gl_canvasPanel);
         scribPane.setLayout(null);
         scribPane.add(minusZoom);
@@ -137,6 +146,7 @@ public class ScribblerGUI extends JFrame {
         toolbar.add(shapeLabel);
         toolbar.add(colorLabel);
 
+        //vertical bar separators in toolbar
         JSeparator barSeparator = new JSeparator();
         barSeparator.setOrientation(SwingConstants.VERTICAL);
         barSeparator.setBackground(SystemColor.activeCaption);
