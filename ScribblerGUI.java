@@ -144,6 +144,17 @@ public class ScribblerGUI extends JFrame {
         barSeparator2.setBackground(SystemColor.activeCaption);
         barSeparator2.setBounds(528, 0, 7, 105);
         toolbar.add(barSeparator2);
+
+        JButton penButton = new JButton("Draw");
+        penButton.setFont(new Font("Tahoma", Font.PLAIN, 5));
+        penButton.setBounds(36, 10, 30, 30);
+        toolbar.add(penButton);
+
+        JButton eraseButton = new JButton("Erase");
+        eraseButton.setFont(new Font("Tahoma", Font.PLAIN, 5));
+        eraseButton.setBounds(86, 10, 30, 30);
+        toolbar.add(eraseButton);
+
         scribPane.add(canvasPanel);
         GroupLayout gl_canvasPanel = new GroupLayout(canvasPanel);
         gl_canvasPanel.setHorizontalGroup(
