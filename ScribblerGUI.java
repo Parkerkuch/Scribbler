@@ -26,101 +26,111 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JSlider;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.JRadioButtonMenuItem;
 
-public class ScribblerGUI extends JFrame {
-
+public class ScribblerGUI extends JFrame implements ActionListener {
+    private final DrawSurface canvasPanel;
     private JPanel scribPane;
+    private final JMenuBar menuBar;
+    private final JMenu fileMenu;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    ScribblerGUI frame = new ScribblerGUI();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    private final JMenuItem newCanvas;
+    private final JMenuItem saveCanvas;
+    private final JMenuItem openCanvas;
+    private final JMenuItem menuEscape;
+
+    private final JPanel toolbar;
+    private final JLabel toolLabel;
+    private final JLabel shapeLabel;
+    private final JLabel colorLabel;
+
+    private final JSlider zoomSlider;
+    private final JLabel plusZoom;
+    private final JLabel minusZoom;
+
+    private final JButton penButton;
+    private final JButton eraseButton;
 
     /**
      * Create the frame.
      */
     public ScribblerGUI() {
+        //frame stuff
         setBackground(Color.WHITE);
         setTitle("Scribbler");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 852, 680);
 
-        JMenuBar menuBar = new JMenuBar();
+        //file menu stuff
+        menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-
-        JMenu fileMenu = new JMenu("File");
+        fileMenu = new JMenu("File");
         menuBar.add(fileMenu);
-
-        JMenuItem newCanvas = new JMenuItem("New Canvas");
+        newCanvas = new JMenuItem("New Canvas");
         fileMenu.add(newCanvas);
-
-        JMenuItem saveCanvas = new JMenuItem("Save Canvas");
+        saveCanvas = new JMenuItem("Save Canvas");
         fileMenu.add(saveCanvas);
-
-        JMenuItem openCanvas = new JMenuItem("Open Canvas");
+        openCanvas = new JMenuItem("Open Canvas");
         fileMenu.add(openCanvas);
-
-        JMenuItem menuEscape = new JMenuItem("Exit Menu");
+        menuEscape = new JMenuItem("Exit Menu");
         menuEscape.setFont(new Font("Segoe UI", Font.PLAIN, 10));
         fileMenu.add(menuEscape);
+
+        //background pane for frame
         scribPane = new JPanel();
         scribPane.setBackground(new Color(230, 230, 250));
         scribPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
         setContentPane(scribPane);
 
-        JPanel toolbar = new JPanel();
+        //toolbar creation
+        toolbar = new JPanel();
         toolbar.setBounds(-10, 0, 849, 105);
         toolbar.setBackground(new Color(255, 255, 240));
         toolbar.setBorder(new LineBorder(new Color(192, 192, 192)));
 
-        JLabel toolLabel = new JLabel("Tools");
+        //toolbar components
+        toolLabel = new JLabel("Tools");
         toolLabel.setBounds(86, 84, 74, 21);
         toolLabel.setVerticalAlignment(SwingConstants.BOTTOM);
         toolLabel.setHorizontalAlignment(SwingConstants.CENTER);
         toolLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
-        JLabel shapeLabel = new JLabel("Shapes");
+        shapeLabel = new JLabel("Shapes");
         shapeLabel.setBounds(355, 84, 74, 21);
         shapeLabel.setVerticalAlignment(SwingConstants.BOTTOM);
         shapeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         shapeLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
-        JLabel colorLabel = new JLabel("Colors");
+        colorLabel = new JLabel("Colors");
         colorLabel.setBounds(666, 84, 74, 21);
         colorLabel.setVerticalAlignment(SwingConstants.BOTTOM);
         colorLabel.setHorizontalAlignment(SwingConstants.CENTER);
         colorLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
-        JSlider zoomSlider = new JSlider();
+
+        //Zoom feature
+        zoomSlider = new JSlider();
         zoomSlider.setBounds(600, 582, 200, 22);
         zoomSlider.setBorder(new EmptyBorder(0, 0, 0, 0));
 
-        JLabel plusZoom = new JLabel("+");
+        plusZoom = new JLabel("+");
         plusZoom.setBounds(804, 582, 35, 13);
 
-        JLabel minusZoom = new JLabel("-");
+        minusZoom = new JLabel("-");
         minusZoom.setBounds(545, 582, 45, 13);
         minusZoom.setHorizontalAlignment(SwingConstants.TRAILING);
 
-        JPanel canvasPanel = new JPanel();
+        //Canvas creation
+        canvasPanel = new DrawSurface();
         canvasPanel.setBounds(10, 115, 818, 448);
         canvasPanel.setBackground(new Color(255, 255, 255));
+
+        //additions to pane and toolbar
         scribPane.setLayout(null);
         scribPane.add(minusZoom);
         scribPane.add(zoomSlider);
@@ -131,6 +141,7 @@ public class ScribblerGUI extends JFrame {
         toolbar.add(shapeLabel);
         toolbar.add(colorLabel);
 
+        //Lines for toolbar
         JSeparator barSeparator = new JSeparator();
         barSeparator.setOrientation(SwingConstants.VERTICAL);
         barSeparator.setBackground(SystemColor.activeCaption);
@@ -145,16 +156,22 @@ public class ScribblerGUI extends JFrame {
         barSeparator2.setBounds(528, 0, 7, 105);
         toolbar.add(barSeparator2);
 
-        JButton penButton = new JButton("Draw");
+        //Buttons
+        penButton = new JButton("Draw");
         penButton.setFont(new Font("Tahoma", Font.PLAIN, 5));
         penButton.setBounds(36, 10, 30, 30);
         toolbar.add(penButton);
 
-        JButton eraseButton = new JButton("Erase");
+        eraseButton = new JButton("Erase");
         eraseButton.setFont(new Font("Tahoma", Font.PLAIN, 5));
         eraseButton.setBounds(86, 10, 30, 30);
         toolbar.add(eraseButton);
 
+        //Button Action Listeners
+        penButton.addActionListener(this);
+        eraseButton.addActionListener(this);
+
+        //Layout stuff
         scribPane.add(canvasPanel);
         GroupLayout gl_canvasPanel = new GroupLayout(canvasPanel);
         gl_canvasPanel.setHorizontalGroup(
@@ -166,5 +183,20 @@ public class ScribblerGUI extends JFrame {
                         .addGap(0, 448, Short.MAX_VALUE)
         );
         canvasPanel.setLayout(gl_canvasPanel);
+    }
+
+
+    /**
+     * @method Reads ActionEvents from user 
+     * @param e Button being clicked by the user
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == penButton) {
+            System.out.println("It worked");
+        }
+        if (e.getSource() == eraseButton) {
+            System.out.println("It worked again");
+        }
     }
 }
