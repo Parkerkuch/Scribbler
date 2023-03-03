@@ -26,10 +26,8 @@ public class DrawTool {
     }
 
     public void paintSquare(Graphics g){
-        g.setColor(Color.RED);
-        g.fillRect(xPos, yPos, width, height);
-        //g.setColor(Color.BLACK);
-        //g.drawRect(xPos, yPos, width, height);
-
+        g.setColor(Color.RED); //Color setting
+        g.fillRect(xPos, yPos, width, height); //draws RECTANGLE CURRENTLY
     }
+
 }
