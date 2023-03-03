@@ -1,14 +1,9 @@
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JToolBar;
 import java.awt.Color;
-import javax.swing.BoxLayout;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.FlowLayout;
 import javax.swing.border.BevelBorder;
@@ -18,20 +13,11 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
-import javax.swing.UIManager;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JSlider;
-import javax.swing.JButton;
-import javax.swing.JSeparator;
-import javax.swing.JRadioButtonMenuItem;
 
 public class ScribblerGUI extends JFrame implements ActionListener {
     private final DrawSurface canvasPanel;
@@ -73,10 +59,13 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         menuBar.add(fileMenu);
         newCanvas = new JMenuItem("New Canvas");
         fileMenu.add(newCanvas);
+        newCanvas.addActionListener(this);
         saveCanvas = new JMenuItem("Save Canvas");
         fileMenu.add(saveCanvas);
+        saveCanvas.addActionListener(this);
         openCanvas = new JMenuItem("Open Canvas");
         fileMenu.add(openCanvas);
+        openCanvas.addActionListener(this);
         menuEscape = new JMenuItem("Exit Menu");
         menuEscape.setFont(new Font("Segoe UI", Font.PLAIN, 10));
         fileMenu.add(menuEscape);
@@ -192,11 +181,27 @@ public class ScribblerGUI extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (e.getSource() == penButton) {
-            System.out.println("It worked");
+        //TODO: Pen button action
         }
-        if (e.getSource() == eraseButton) {
-            System.out.println("It worked again");
+
+       else if (e.getSource() == eraseButton) {
+            //TODO: Erase button action
+        }
+
+       else if (e.getSource() == newCanvas) {
+       }
+
+        else if (e.getSource() == openCanvas) {
+            JFileChooser fc = new JFileChooser();
+            //TODO: Open canvas action
+        }
+
+        else if (e.getSource() == saveCanvas) {
+            JFileChooser fc = new JFileChooser();
+            //TODO: Save canvas action
         }
     }
 }
+
