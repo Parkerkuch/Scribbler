@@ -46,17 +46,28 @@ class DrawSurface extends JPanel {
         g.drawImage(paintedImage, 0, 0, null);
     }
 
-    public void save() throws IOException {
+    public void saveImage() throws IOException {
         System.out.println("Save executed");
         //add ability to interact with file explorer and save to disk
-        ImageIO.write(paintedImage, "PNG", new File("filename.png"));
+
+        JFileChooser fc = new JFileChooser();
+        int value = fc.showSaveDialog(null);
+        if (value == JFileChooser.APPROVE_OPTION) {
+            String filename = fc.getSelectedFile().getName();
+            ImageIO.write(paintedImage, "png", new File(filename));
+        }
     }
 
-    public void open() throws IOException {
+    public void openImage() throws IOException {
         System.out.println("Open executed");
         //add ability to interact with file explorer and open from disk
-        paintedImage = ImageIO.read(new File("filename.png"));
+        JFileChooser fc = new JFileChooser();
+        int value = fc.showOpenDialog(null);
+        if (value == JFileChooser.APPROVE_OPTION) {
+            String filename = fc.getSelectedFile().getName();
+            paintedImage = ImageIO.read(new File(filename));
+        }
         // update panel with new paint image
-        repaint();
+        //repaint();
     }
 }

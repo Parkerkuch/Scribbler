@@ -21,7 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class ScribblerGUI extends JFrame implements ActionListener  {
+public class ScribblerGUI extends JFrame implements ActionListener {
     private final DrawSurface canvasPanel;
     private JPanel scribPane;
     private final JMenuBar menuBar;
@@ -178,39 +178,39 @@ public class ScribblerGUI extends JFrame implements ActionListener  {
 
 
     /**
-     * @method Reads ActionEvents from user 
      * @param e Button being clicked by the user
+     * @method Reads ActionEvents from user
      */
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == penButton) {
-        //TODO: Pen button action
-        }
-
-       else if (e.getSource() == eraseButton) {
+            //TODO: Pen button action
+        } else if (e.getSource() == eraseButton) {
             //TODO: Erase button action
-        }
+        } else if (e.getSource() == newCanvas) {
 
-       else if (e.getSource() == newCanvas) {
-
-       }
-
-        else if (e.getSource() == openCanvas) {
-            try {
-                canvasPanel.open();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
         }
 
         else if (e.getSource() == saveCanvas) {
-            try {
-                canvasPanel.save();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+            JFileChooser fc = new JFileChooser();
+            int value = fc.showSaveDialog(null);
+            if (value == JFileChooser.APPROVE_OPTION) {
+                String filename = fc.getSelectedFile().getName();
+                try {
+                    canvasPanel.saveImage();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        }
+        else if (e.getSource() == openCanvas) {
+                try {
+                    canvasPanel.openImage();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         }
     }
-}
 
