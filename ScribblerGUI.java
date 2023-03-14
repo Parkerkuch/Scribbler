@@ -18,8 +18,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-public class ScribblerGUI extends JFrame implements ActionListener {
+public class ScribblerGUI extends JFrame implements ActionListener  {
     private final DrawSurface canvasPanel;
     private JPanel scribPane;
     private final JMenuBar menuBar;
@@ -191,16 +193,23 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         }
 
        else if (e.getSource() == newCanvas) {
+
        }
 
         else if (e.getSource() == openCanvas) {
-            JFileChooser fc = new JFileChooser();
-            //TODO: Open canvas action
+            try {
+                canvasPanel.open();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
         else if (e.getSource() == saveCanvas) {
-            JFileChooser fc = new JFileChooser();
-            //TODO: Save canvas action
+            try {
+                canvasPanel.save();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 }
