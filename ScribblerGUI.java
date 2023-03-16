@@ -1,11 +1,7 @@
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.Font;
-import java.awt.FlowLayout;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
@@ -15,7 +11,6 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -43,6 +38,8 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
     private final JButton penButton;
     private final JButton eraseButton;
+
+    private JButton clearButton;
 
     /**
      * Create the frame.
@@ -158,9 +155,19 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         eraseButton.setBounds(86, 10, 30, 30);
         toolbar.add(eraseButton);
 
+        clearButton = new JButton("Clear");
+        //Icon clearIcon = new ImageIcon("E:\editicon.PN");
+        clearButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 9));
+        clearButton.setBounds(136, 10, 30, 30);
+        clearButton.setMargin(new Insets(0, 0, 0, 0));
+        //clearButton.setIcon(clearIcon);
+        toolbar.add(clearButton);
+
+
         //Button Action Listeners
         penButton.addActionListener(this);
         eraseButton.addActionListener(this);
+        clearButton.addActionListener(this);
 
         //Layout stuff
         scribPane.add(canvasPanel);
@@ -190,6 +197,8 @@ public class ScribblerGUI extends JFrame implements ActionListener {
             //TODO: Erase button action
         } else if (e.getSource() == newCanvas) {
 
+        } else if (e.getSource() == clearButton) {
+            repaint();
         }
 
         else if (e.getSource() == saveCanvas) {
