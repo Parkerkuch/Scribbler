@@ -1,10 +1,14 @@
 import java.awt.*;
 
 public class DrawTool {
-    private int xPos = 50;
-    private int yPos = 50;
-    private int width = 20;
-    private int height = 5;
+    private int xPos;
+    private int yPos;
+    private int width;
+    private int height;
+
+    private int arcWidth;
+
+    private int arcHeight;
 
     public void setX(int xPos){
         this.xPos = xPos;
@@ -18,11 +22,31 @@ public class DrawTool {
     public int getY(){
         return yPos;
     }
+    public void setWidth(int width) {
+        this.width = width;
+    }
     public int getWidth(){
         return width;
     }
+    public void setHeight(int height) {
+        this.height = height;
+    }
     public int getHeight(){
         return height;
+    }
+    public void setArcWidth(int arcLength) {
+        this.arcWidth = arcWidth;
+    }
+    public int getArcWidth() {
+        return arcWidth;
+    }
+
+    public void setArcHeight(int arcHeight) {
+        this.arcHeight = arcHeight;
+    }
+
+    public int getArcHeight() {
+        return arcHeight;
     }
 
     /**
@@ -30,6 +54,10 @@ public class DrawTool {
      * @param g
      */
     public void paintSquare(Graphics g){
+        //setX(50);
+        //setY(50);
+        setWidth(20);
+        setHeight(5);
         g.setColor(Color.RED); //Color setting
         g.fillRect(xPos, yPos, width, height); //draws RECTANGLE CURRENTLY
     }
@@ -39,8 +67,14 @@ public class DrawTool {
      * @param g
      */
     public void paintCircle(Graphics g) {
+        //setX(50);
+        //setY(50);
+        setWidth(10);
+        setHeight(10);
+        setArcWidth(100);
+        setArcHeight(100);
         g.setColor(Color.BLUE);
-        g.fillOval(xPos, yPos, width, height);
+        //g.fillRoundRect(xPos, yPos, width, height, arcWidth, arcHeight);
     }
 
 }

@@ -20,8 +20,8 @@ class DrawSurface extends JPanel {
         //Listener for single click
         addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent e){
-                //moveSquare(e.getX(), e.getY());
-                moveCircle(e.getX(), e.getY());
+                moveSquare(e.getX(), e.getY());
+                //moveCircle(e.getX(), e.getY());
             }
         });
 

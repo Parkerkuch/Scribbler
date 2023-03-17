@@ -2,18 +2,10 @@ import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.SoftBevelBorder;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class ScribblerGUI extends JFrame implements ActionListener {
