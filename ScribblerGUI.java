@@ -194,23 +194,54 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         if (e.getSource() == customToolButton) {
             JTextField heightInput = new JTextField();
             JTextField widthInput = new JTextField();
-            Object[] settings = {
+            JTextField colorInput = new JTextField();
+            Object[] penSettings = {
                     "Height: ", heightInput,
-                    "Width: ", widthInput
+                    "Width: ", widthInput,
+                    "Color: ", colorInput
             };
 
             //Window that pops up when user clicks custom draw tool, sets user defined dimensions for tool
             //TODO: consider adding a conditional to make sure the user enters a valid input
-            int option = JOptionPane.showConfirmDialog(null, settings, "Custom Tool Settings", JOptionPane.OK_CANCEL_OPTION);
+            int option = JOptionPane.showConfirmDialog(null, penSettings, "Custom Tool Settings", JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {
                 toolHeight = Integer.parseInt(heightInput.getText());
                 toolWidth = Integer.parseInt(widthInput.getText());
                 DrawTool.height = toolHeight;
                 DrawTool.width = toolWidth;
+                String changeColor = colorInput.getText().toUpperCase();
+
+                switch (changeColor) {
+                    case ("RED") -> DrawTool.drawColor = Color.RED;
+                    case ("ORANGE") -> DrawTool.drawColor = Color.ORANGE;
+                    case ("YELLOW") -> DrawTool.drawColor = Color.YELLOW;
+                    case ("GREEN") -> DrawTool.drawColor = Color.GREEN;
+                    case ("BLUE") -> DrawTool.drawColor = Color.BLUE;
+                    case ("MAGENTA") -> DrawTool.drawColor = Color.MAGENTA;
+                    case ("BLACK") -> DrawTool.drawColor = Color.BLACK;
+                    case ("WHITE") -> DrawTool.drawColor = Color.WHITE;
+                    default -> DrawTool.drawColor = Color.BLACK;
+                }
                 //System.out.println("Width: " + toolWidth + ", Height: " + toolHeight);
             }
         } else if (e.getSource() == eraseButton) {
-            DrawTool.drawColor = Color.WHITE;
+            JTextField heightInput = new JTextField();
+            JTextField widthInput = new JTextField();
+
+            Object[] eraserSettings = {
+                    "Height: ", heightInput,
+                    "Width: ", widthInput
+            };
+
+            int option = JOptionPane.showConfirmDialog(null, eraserSettings, "Eraser Settings", JOptionPane.OK_CANCEL_OPTION);
+            if (option == JOptionPane.OK_OPTION) {
+                toolHeight = Integer.parseInt(heightInput.getText());
+                toolWidth = Integer.parseInt(widthInput.getText());
+                DrawTool.height = toolHeight;
+                DrawTool.width = toolWidth;
+                DrawTool.drawColor = Color.WHITE;
+                //System.out.println("Width: " + toolWidth + ", Height: " + toolHeight);
+            }
         } else if (e.getSource() == newCanvas) {
             //TODO: New Canvas Button
         } else if (e.getSource() == clearButton) {

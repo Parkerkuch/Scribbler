@@ -14,7 +14,7 @@ public class DrawTool {
         //TODO: Decide on default tool dimensions
         setWidth(20);
         setHeight(20);
-        setColor(Color.BLUE);
+        setColor(Color.WHITE);
     }
 
     public void setX(int xPos){
