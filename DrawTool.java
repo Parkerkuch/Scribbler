@@ -5,7 +5,7 @@ public class DrawTool {
     public static int yPos;
     public static int width;
     public static int height;
-
+    public static Color drawColor;
     public static int arcWidth;
 
     public static int arcHeight;
@@ -14,6 +14,7 @@ public class DrawTool {
         //TODO: Decide on default tool dimensions
         setWidth(20);
         setHeight(20);
+        setColor(Color.BLUE);
     }
 
     public void setX(int xPos){
@@ -55,6 +56,12 @@ public class DrawTool {
         return arcHeight;
     }
 
+    public Color getColor() {
+        return drawColor;
+    }
+    public void setColor(Color drawColor) {
+        this.drawColor = drawColor;
+    }
     /**
      *
      * @param g Graphics object to call upon
@@ -62,7 +69,7 @@ public class DrawTool {
     public void paintTool(Graphics g){
         //add if statements to check for selected tool, store all in one method
         //TODO: Add if statements to check for selected tool once tools are added
-        g.setColor(Color.BLUE);
+        g.setColor(drawColor);
         //TODO: Come up with a way to dynamically change color
         g.fillRect(xPos, yPos, width, height);
         //TODO: Implement other shapes

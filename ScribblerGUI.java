@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+
 public class ScribblerGUI extends JFrame implements ActionListener {
     private final DrawSurface canvasPanel;
     private JPanel scribPane;
@@ -209,7 +210,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                 //System.out.println("Width: " + toolWidth + ", Height: " + toolHeight);
             }
         } else if (e.getSource() == eraseButton) {
-            //TODO: Erase button action
+            DrawTool.drawColor = Color.WHITE;
         } else if (e.getSource() == newCanvas) {
             //TODO: New Canvas Button
         } else if (e.getSource() == clearButton) {

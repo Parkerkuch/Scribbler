@@ -18,7 +18,6 @@ class DrawSurface extends JPanel {
      * Constructor for creating a Draw Surface
      */
     public DrawSurface(){
-
         //Listener for single click
         addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent e){
