@@ -1,14 +1,20 @@
 import java.awt.*;
 
 public class DrawTool {
-    private int xPos;
-    private int yPos;
-    private int width;
-    private int height;
+    public static int xPos;
+    public static int yPos;
+    public static int width;
+    public static int height;
 
-    private int arcWidth;
+    public static int arcWidth;
 
-    private int arcHeight;
+    public static int arcHeight;
+
+    public DrawTool() {
+        //TODO: Decide on default tool dimensions
+        setWidth(20);
+        setHeight(20);
+    }
 
     public void setX(int xPos){
         this.xPos = xPos;
@@ -51,30 +57,28 @@ public class DrawTool {
 
     /**
      *
-     * @param g
+     * @param g Graphics object to call upon
      */
-    public void paintSquare(Graphics g){
-        //setX(50);
-        //setY(50);
-        setWidth(20);
-        setHeight(5);
-        g.setColor(Color.RED); //Color setting
-        g.fillRect(xPos, yPos, width, height); //draws RECTANGLE CURRENTLY
+    public void paintTool(Graphics g){
+        //add if statements to check for selected tool, store all in one method
+        //TODO: Add if statements to check for selected tool once tools are added
+        g.setColor(Color.BLUE);
+        //TODO: Come up with a way to dynamically change color
+        g.fillRect(xPos, yPos, width, height);
+        //TODO: Implement other shapes
     }
 
     /**
      *
      * @param g
      */
-    public void paintCircle(Graphics g) {
-        //setX(50);
-        //setY(50);
+    /*public void paintCircle(Graphics g) {
         setWidth(10);
         setHeight(10);
         setArcWidth(100);
         setArcHeight(100);
         g.setColor(Color.BLUE);
         //g.fillRoundRect(xPos, yPos, width, height, arcWidth, arcHeight);
-    }
+    }*/
 
 }

@@ -6,47 +6,47 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
+//TODO: Create boolean "if drawing", then make sure if drawing is false, do not show the draw tool on the canvas (should fix cursor displaying shape problem)
+//TODO: Make sure to include if exit for if mouse leaves canvas in conditional block
+        //This can be done using mouse listener class (link in discord) (mousePressed/mouseClicked/mouseExited/other??)
 class DrawSurface extends JPanel {
-    DrawTool redSquare = new DrawTool();
-    DrawTool circle = new DrawTool();
+    DrawTool customTool = new DrawTool();
+    //DrawTool circle = new DrawTool();
     BufferedImage paintedImage = new BufferedImage(818, 448, BufferedImage.TYPE_INT_ARGB);
 
     /**
-     *
+     * Constructor for creating a Draw Surface
      */
     public DrawSurface(){
 
         //Listener for single click
         addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent e){
-                moveSquare(e.getX(), e.getY());
-                //moveCircle(e.getX(), e.getY());
+                moveTool(e.getX(), e.getY());
             }
         });
 
         //listener for Dragging
         addMouseMotionListener(new MouseAdapter(){
             public void mouseDragged(MouseEvent e){
-                moveSquare(e.getX(), e.getY());
-                //moveCircle(e.getX(), e.getY());
+                moveTool(e.getX(), e.getY());
             }
         });
     }
 
     /**
-     *
-     * @param x
-     * @param y
+     * @param x = coordinate x corresponding to location on canvas in width
+     * @param y = coordinate y corresponding to location on canvas in height
      */
-    private void moveSquare(int x, int y){
-        final int CURR_X = redSquare.getX();
-        final int CURR_Y = redSquare.getY();
+    private void moveTool(int x, int y){
+        //if for checking if boolean for mouseReleased/Pressed
+        final int CURR_X = customTool.getX();
+        final int CURR_Y = customTool.getY();
 
         if((CURR_X != x) || (CURR_Y != y)){
-            redSquare.setX(x);
-            redSquare.setY(y);
-            repaint(redSquare.getX(), redSquare.getY(), redSquare.getWidth(), redSquare.getHeight());
+            customTool.setX(x);
+            customTool.setY(y);
+            repaint(customTool.getX(), customTool.getY(), customTool.getWidth(), customTool.getHeight());
         }
     }
 
@@ -55,7 +55,7 @@ class DrawSurface extends JPanel {
      * @param x
      * @param y
      */
-    private void moveCircle(int x, int y) {
+    /*private void moveCircle(int x, int y) {
         final int CURR_X = circle.getX();
         final int CURR_Y = circle.getY();
 
@@ -64,7 +64,7 @@ class DrawSurface extends JPanel {
             circle.setY(y);
             repaint(circle.getX(), circle.getY(), circle.getWidth(), circle.getHeight());
         }
-    }
+    }*/
 
     /**
      *
@@ -73,13 +73,12 @@ class DrawSurface extends JPanel {
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        redSquare.paintSquare(g);
-        //circle.paintCircle(g);
+        customTool.paintTool(g);
         g.drawImage(paintedImage, 0, 0, null);
     }
 
     /**
-     *
+     * Saves image to disk
      * @throws IOException
      */
     public void saveImage() throws IOException {
@@ -95,7 +94,7 @@ class DrawSurface extends JPanel {
     }
 
     /**
-     *
+     * Opens image from disk
      * @throws IOException
      */
     public void openImage() throws IOException {

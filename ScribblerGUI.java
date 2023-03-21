@@ -28,10 +28,13 @@ public class ScribblerGUI extends JFrame implements ActionListener {
     private final JLabel plusZoom;
     private final JLabel minusZoom;
 
-    private final JButton penButton;
+    private final JButton customToolButton;
     private final JButton eraseButton;
 
     private JButton clearButton;
+
+    public int toolHeight;
+    public int toolWidth;
 
     /**
      * Create the frame.
@@ -121,7 +124,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         toolbar.add(shapeLabel);
         toolbar.add(colorLabel);
 
-        //Lines for toolbar
+        //Separation lines for toolbar
         JSeparator barSeparator = new JSeparator();
         barSeparator.setOrientation(SwingConstants.VERTICAL);
         barSeparator.setBackground(SystemColor.activeCaption);
@@ -137,27 +140,30 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         toolbar.add(barSeparator2);
 
         //Buttons
-        penButton = new JButton("Draw");
-        penButton.setFont(new Font("Tahoma", Font.PLAIN, 5));
-        penButton.setBounds(36, 10, 30, 30);
-        toolbar.add(penButton);
+        customToolButton = new JButton("Pen");
+        customToolButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+        customToolButton.setBounds(36, 10, 35, 35);
+        customToolButton.setMargin(new Insets(0, 0, 0, 0));
+        toolbar.add(customToolButton);
 
         eraseButton = new JButton("Erase");
-        eraseButton.setFont(new Font("Tahoma", Font.PLAIN, 5));
-        eraseButton.setBounds(86, 10, 30, 30);
+        eraseButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+        eraseButton.setBounds(86, 10, 35, 35);
+        eraseButton.setMargin(new Insets(0, 0, 0, 0));
         toolbar.add(eraseButton);
 
         clearButton = new JButton("Clear");
         //Icon clearIcon = new ImageIcon("E:\editicon.PN");
-        clearButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 9));
-        clearButton.setBounds(136, 10, 30, 30);
+        clearButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+        clearButton.setBounds(136, 10, 35, 35);
         clearButton.setMargin(new Insets(0, 0, 0, 0));
         //clearButton.setIcon(clearIcon);
         toolbar.add(clearButton);
 
+        //TODO: Add more buttons
 
         //Button Action Listeners
-        penButton.addActionListener(this);
+        customToolButton.addActionListener(this);
         eraseButton.addActionListener(this);
         clearButton.addActionListener(this);
 
@@ -183,12 +189,29 @@ public class ScribblerGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == penButton) {
-            //TODO: Pen button action
+        //When user clicks, allow them to customize width and height of tool
+        if (e.getSource() == customToolButton) {
+            JTextField heightInput = new JTextField();
+            JTextField widthInput = new JTextField();
+            Object[] settings = {
+                    "Height: ", heightInput,
+                    "Width: ", widthInput
+            };
+
+            //Window that pops up when user clicks custom draw tool, sets user defined dimensions for tool
+            //TODO: consider adding a conditional to make sure the user enters a valid input
+            int option = JOptionPane.showConfirmDialog(null, settings, "Custom Tool Settings", JOptionPane.OK_CANCEL_OPTION);
+            if (option == JOptionPane.OK_OPTION) {
+                toolHeight = Integer.parseInt(heightInput.getText());
+                toolWidth = Integer.parseInt(widthInput.getText());
+                DrawTool.height = toolHeight;
+                DrawTool.width = toolWidth;
+                //System.out.println("Width: " + toolWidth + ", Height: " + toolHeight);
+            }
         } else if (e.getSource() == eraseButton) {
             //TODO: Erase button action
         } else if (e.getSource() == newCanvas) {
-
+            //TODO: New Canvas Button
         } else if (e.getSource() == clearButton) {
             repaint();
         }
