@@ -283,7 +283,6 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
         //When user clicks, allow them to customize width and height of tool
         if (e.getSource() == customToolButton) {
-            DrawTool.drawColor = Color.BLUE;
             JTextField heightInput = new JTextField();
             JTextField widthInput = new JTextField();
             JTextField colorInput = new JTextField();
