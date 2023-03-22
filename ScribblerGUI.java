@@ -192,6 +192,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
         //When user clicks, allow them to customize width and height of tool
         if (e.getSource() == customToolButton) {
+            DrawTool.drawColor = Color.BLUE;
             JTextField heightInput = new JTextField();
             JTextField widthInput = new JTextField();
             JTextField colorInput = new JTextField();
@@ -205,24 +206,36 @@ public class ScribblerGUI extends JFrame implements ActionListener {
             //TODO: consider adding a conditional to make sure the user enters a valid input
             int option = JOptionPane.showConfirmDialog(null, penSettings, "Custom Tool Settings", JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {
-                toolHeight = Integer.parseInt(heightInput.getText());
-                toolWidth = Integer.parseInt(widthInput.getText());
-                DrawTool.height = toolHeight;
-                DrawTool.width = toolWidth;
-                String changeColor = colorInput.getText().toUpperCase();
+                try {
+                    toolHeight = Integer.parseInt(heightInput.getText());
+                    toolWidth = Integer.parseInt(widthInput.getText());
+                    DrawTool.height = toolHeight;
+                    DrawTool.width = toolWidth;
+                    String changeColor = colorInput.getText().toUpperCase();
 
-                switch (changeColor) {
-                    case ("RED") -> DrawTool.drawColor = Color.RED;
-                    case ("ORANGE") -> DrawTool.drawColor = Color.ORANGE;
-                    case ("YELLOW") -> DrawTool.drawColor = Color.YELLOW;
-                    case ("GREEN") -> DrawTool.drawColor = Color.GREEN;
-                    case ("BLUE") -> DrawTool.drawColor = Color.BLUE;
-                    case ("MAGENTA") -> DrawTool.drawColor = Color.MAGENTA;
-                    case ("BLACK") -> DrawTool.drawColor = Color.BLACK;
-                    case ("WHITE") -> DrawTool.drawColor = Color.WHITE;
-                    default -> DrawTool.drawColor = Color.BLACK;
+                    if (toolHeight <= 0) {
+                        JOptionPane.showMessageDialog(null, "Enter a valid height");
+                    }
+                    if (toolWidth <= 0) {
+                        JOptionPane.showMessageDialog(null, "Enter a valid width");
+                    }
+
+                    switch (changeColor) {
+                        case ("RED") -> DrawTool.drawColor = Color.RED;
+                        case ("ORANGE") -> DrawTool.drawColor = Color.ORANGE;
+                        case ("YELLOW") -> DrawTool.drawColor = Color.YELLOW;
+                        case ("GREEN") -> DrawTool.drawColor = Color.GREEN;
+                        case ("BLUE") -> DrawTool.drawColor = Color.BLUE;
+                        case ("MAGENTA") -> DrawTool.drawColor = Color.MAGENTA;
+                        case ("BLACK") -> DrawTool.drawColor = Color.BLACK;
+                        case ("WHITE") -> DrawTool.drawColor = Color.WHITE;
+                        default -> DrawTool.drawColor = Color.BLACK;
+                    }
+                    //System.out.println("Width: " + toolWidth + ", Height: " + toolHeight);
                 }
-                //System.out.println("Width: " + toolWidth + ", Height: " + toolHeight);
+                catch (NumberFormatException n){
+                    JOptionPane.showMessageDialog(null, "Enter a valid integer");
+                }
             }
         } else if (e.getSource() == eraseButton) {
             JTextField heightInput = new JTextField();
@@ -235,12 +248,23 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
             int option = JOptionPane.showConfirmDialog(null, eraserSettings, "Eraser Settings", JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {
-                toolHeight = Integer.parseInt(heightInput.getText());
-                toolWidth = Integer.parseInt(widthInput.getText());
-                DrawTool.height = toolHeight;
-                DrawTool.width = toolWidth;
-                DrawTool.drawColor = Color.WHITE;
-                //System.out.println("Width: " + toolWidth + ", Height: " + toolHeight);
+                try {
+                    toolHeight = Integer.parseInt(heightInput.getText());
+                    toolWidth = Integer.parseInt(widthInput.getText());
+                    DrawTool.height = toolHeight;
+                    DrawTool.width = toolWidth;
+                    DrawTool.drawColor = Color.WHITE;
+                    //System.out.println("Width: " + toolWidth + ", Height: " + toolHeight);
+                    if (toolHeight <= 0) {
+                        JOptionPane.showMessageDialog(null, "Enter a valid height");
+                    }
+                    if (toolWidth <= 0) {
+                        JOptionPane.showMessageDialog(null, "Enter a valid width");
+                    }
+                }
+                catch (NumberFormatException n) {
+                    JOptionPane.showMessageDialog(null, "Enter a valid integer");
+                }
             }
         } else if (e.getSource() == newCanvas) {
             //TODO: New Canvas Button

@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 //TODO: Create boolean "if drawing", then make sure if drawing is false, do not show the draw tool on the canvas (should fix cursor displaying shape problem)
 //TODO: Make sure to include if exit for if mouse leaves canvas in conditional block
@@ -12,7 +13,8 @@ import java.io.IOException;
 class DrawSurface extends JPanel {
     DrawTool customTool = new DrawTool();
     //DrawTool circle = new DrawTool();
-    BufferedImage paintedImage = new BufferedImage(818, 448, BufferedImage.TYPE_INT_ARGB);
+    BufferedImage paintedImage = new BufferedImage(852, 680, BufferedImage.TYPE_INT_ARGB);
+
 
     /**
      * Constructor for creating a Draw Surface
@@ -48,6 +50,7 @@ class DrawSurface extends JPanel {
             repaint(customTool.getX(), customTool.getY(), customTool.getWidth(), customTool.getHeight());
         }
     }
+
 
     /**
      *
@@ -89,6 +92,8 @@ class DrawSurface extends JPanel {
         if (value == JFileChooser.APPROVE_OPTION) {
             String filename = fc.getSelectedFile().getName();
             ImageIO.write(paintedImage, "png", new File(filename));
+            System.out.println("all saved");
+
         }
     }
 
