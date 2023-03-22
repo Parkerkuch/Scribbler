@@ -213,10 +213,10 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                     DrawTool.width = toolWidth;
                     String changeColor = colorInput.getText().toUpperCase();
 
-                    if (toolHeight <= 0) {
+                    if (toolHeight <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid height");
                     }
-                    if (toolWidth <= 0) {
+                    if (toolWidth <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid width");
                     }
 
@@ -255,10 +255,11 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                     DrawTool.width = toolWidth;
                     DrawTool.drawColor = Color.WHITE;
                     //System.out.println("Width: " + toolWidth + ", Height: " + toolHeight);
-                    if (toolHeight <= 0) {
+                    //TODO: Whenever user enters invalid input, the window closes, we need to keep it open and just reask for input
+                    if (toolHeight <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid height");
                     }
-                    if (toolWidth <= 0) {
+                    if (toolWidth <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid width");
                     }
                 }
