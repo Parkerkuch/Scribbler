@@ -34,6 +34,25 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
     private JButton clearButton;
 
+    private JButton redButton;
+    private JButton orangeButton;
+    private JButton yellowButton;
+    private JButton greenButton;
+    private JButton blueButton;
+    private JButton magentaButton;
+    private JButton blackButton;
+    private JButton whiteButton;
+
+    private JButton lightGrayButton;
+
+    private JButton darkGrayButton;
+
+    private JButton pinkButton;
+
+    private JButton cyanButton;
+
+    private JButton customColorButton;
+
     public int toolHeight;
     public int toolWidth;
 
@@ -91,7 +110,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         shapeLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
         colorLabel = new JLabel("Colors");
-        colorLabel.setBounds(666, 84, 74, 21);
+        colorLabel.setBounds(651 , 84, 74, 21);
         colorLabel.setVerticalAlignment(SwingConstants.BOTTOM);
         colorLabel.setHorizontalAlignment(SwingConstants.CENTER);
         colorLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -162,6 +181,78 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         toolbar.add(clearButton);
 
         //TODO: Add more buttons
+
+
+        //Color Buttons
+        redButton = new JButton();
+        orangeButton = new JButton();
+        yellowButton = new JButton();
+        greenButton = new JButton();
+        blueButton = new JButton();
+        magentaButton = new JButton();
+        blackButton = new JButton();
+        whiteButton = new JButton();
+        cyanButton = new JButton();
+        pinkButton = new JButton();
+        lightGrayButton = new JButton();
+        darkGrayButton = new JButton();
+
+        customColorButton = new JButton("CUSTOM"); //temporary
+        customColorButton.setFont(new Font("Comic Sans MS", Font.BOLD, 8));
+        customColorButton.setMargin(new Insets(0, 0, 0, 0));
+        customColorButton.setBounds(540, 20, 30,30);
+        toolbar.add(customColorButton);
+
+        redButton.setBackground(Color.RED);
+        redButton.setBounds(595, 10, 20, 20);
+        toolbar.add(redButton);
+
+        orangeButton.setBackground(Color.ORANGE);
+        orangeButton.setBounds(635, 10, 20, 20);
+        toolbar.add(orangeButton);
+
+        yellowButton.setBackground(Color.YELLOW);
+        yellowButton.setBounds(675, 10, 20, 20);
+        toolbar.add(yellowButton);
+
+        greenButton.setBackground(Color.GREEN);
+        greenButton.setBounds(715,10,20,20);
+        toolbar.add(greenButton);
+
+        blueButton.setBackground(Color.blue);
+        blueButton.setBounds(755,10,20,20);
+        toolbar.add(blueButton);
+
+        magentaButton.setBackground(Color.MAGENTA);
+        magentaButton.setBounds(595, 40, 20, 20);
+        toolbar.add(magentaButton);
+
+        blackButton.setBackground(Color.BLACK);
+        blackButton.setBounds(795,40,20,20);
+        toolbar.add(blackButton);
+
+        whiteButton.setBackground(Color.WHITE);
+        whiteButton.setBounds(755, 40, 20, 20);
+        toolbar.add(whiteButton);
+
+        pinkButton.setBackground(Color.PINK);
+        pinkButton.setBounds(635, 40, 20, 20);
+        toolbar.add(pinkButton);
+
+        cyanButton.setBackground(Color.CYAN);
+        cyanButton.setBounds(795, 10, 20, 20);
+        toolbar.add(cyanButton);
+
+        lightGrayButton.setBackground(Color.lightGray);
+        lightGrayButton.setBounds(675, 40, 20, 20);
+        toolbar.add(lightGrayButton);
+
+        darkGrayButton.setBackground(Color.darkGray);
+        darkGrayButton.setBounds(715, 40, 20, 20);
+        toolbar.add(darkGrayButton);
+
+
+
 
         //Button Action Listeners
         customToolButton.addActionListener(this);
