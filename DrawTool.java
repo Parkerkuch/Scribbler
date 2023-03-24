@@ -11,10 +11,10 @@ public class DrawTool {
     public static int arcHeight;
 
     public DrawTool() {
-        //TODO: Decide on default tool dimensions
+        //TODO: Decide on default tool dimensions/color
         setWidth(20);
         setHeight(20);
-        setColor(Color.WHITE);
+        setColor(Color.RED);
     }
 
     public void setX(int xPos){

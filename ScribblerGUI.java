@@ -177,6 +177,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         clearButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
         clearButton.setBounds(136, 10, 35, 35);
         clearButton.setMargin(new Insets(0, 0, 0, 0));
+        clearButton.setBackground(Color.WHITE);
         //clearButton.setIcon(clearIcon);
         toolbar.add(clearButton);
 
@@ -258,6 +259,19 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         customToolButton.addActionListener(this);
         eraseButton.addActionListener(this);
         clearButton.addActionListener(this);
+        redButton.addActionListener(this);
+        orangeButton.addActionListener(this);
+        yellowButton.addActionListener(this);
+        greenButton.addActionListener(this);
+        blueButton.addActionListener(this);
+        magentaButton.addActionListener(this);
+        blackButton.addActionListener(this);
+        whiteButton.addActionListener(this);
+        pinkButton.addActionListener(this);
+        cyanButton.addActionListener(this);
+        lightGrayButton.addActionListener(this);
+        darkGrayButton.addActionListener(this);
+
 
         //Layout stuff
         scribPane.add(canvasPanel);
@@ -285,11 +299,9 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         if (e.getSource() == customToolButton) {
             JTextField heightInput = new JTextField();
             JTextField widthInput = new JTextField();
-            JTextField colorInput = new JTextField();
             Object[] penSettings = {
                     "Height: ", heightInput,
                     "Width: ", widthInput,
-                    "Color: ", colorInput
             };
 
             //Window that pops up when user clicks custom draw tool, sets user defined dimensions for tool
@@ -301,7 +313,6 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                     toolWidth = Integer.parseInt(widthInput.getText());
                     DrawTool.height = toolHeight;
                     DrawTool.width = toolWidth;
-                    String changeColor = colorInput.getText().toUpperCase();
 
                     if (toolHeight <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid height");
@@ -310,17 +321,6 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                         JOptionPane.showMessageDialog(null, "Enter a valid width");
                     }
 
-                    switch (changeColor) {
-                        case ("RED") -> DrawTool.drawColor = Color.RED;
-                        case ("ORANGE") -> DrawTool.drawColor = Color.ORANGE;
-                        case ("YELLOW") -> DrawTool.drawColor = Color.YELLOW;
-                        case ("GREEN") -> DrawTool.drawColor = Color.GREEN;
-                        case ("BLUE") -> DrawTool.drawColor = Color.BLUE;
-                        case ("MAGENTA") -> DrawTool.drawColor = Color.MAGENTA;
-                        case ("BLACK") -> DrawTool.drawColor = Color.BLACK;
-                        case ("WHITE") -> DrawTool.drawColor = Color.WHITE;
-                        default -> DrawTool.drawColor = Color.BLACK;
-                    }
                     //System.out.println("Width: " + toolWidth + ", Height: " + toolHeight);
                 }
                 catch (NumberFormatException n){
@@ -357,7 +357,33 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Enter a valid integer");
                 }
             }
-        } else if (e.getSource() == newCanvas) {
+        } else if (e.getSource() == redButton) {
+            DrawTool.drawColor = Color.RED;
+        } else if (e.getSource() == orangeButton) {
+            DrawTool.drawColor = Color.ORANGE;
+        } else if (e.getSource() == greenButton) {
+            DrawTool.drawColor = Color.GREEN;
+        } else if (e.getSource() == blueButton) {
+            DrawTool.drawColor = Color.BLUE;
+        } else if (e.getSource() == yellowButton) {
+            DrawTool.drawColor = Color.YELLOW;
+        } else if (e.getSource() == magentaButton) {
+            DrawTool.drawColor = Color.MAGENTA;
+        } else if (e.getSource() == blackButton) {
+            DrawTool.drawColor = Color.BLACK;
+        } else if (e.getSource() == whiteButton) {
+            DrawTool.drawColor = Color.WHITE;
+        } else if (e.getSource() == pinkButton) {
+            DrawTool.drawColor = Color.PINK;
+        } else if (e.getSource() == cyanButton) {
+            DrawTool.drawColor = Color.CYAN;
+        } else if (e.getSource() == lightGrayButton) {
+            DrawTool.drawColor = Color.lightGray;
+        } else if (e.getSource() == darkGrayButton) {
+            DrawTool.drawColor = Color.darkGray;
+        }
+
+        else if (e.getSource() == newCanvas) {
             //TODO: New Canvas Button
         } else if (e.getSource() == clearButton) {
             repaint();
