@@ -53,6 +53,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
     private JButton customColorButton;
 
+    private JButton currentColorButton;
     public int toolHeight;
     public int toolWidth;
 
@@ -201,55 +202,63 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         customColorButton = new JButton("CUSTOM"); //temporary
         customColorButton.setFont(new Font("Comic Sans MS", Font.BOLD, 8));
         customColorButton.setMargin(new Insets(0, 0, 0, 0));
-        customColorButton.setBounds(540, 20, 30,30);
+        customColorButton.setBounds(540, 5, 30,30); //y20
         toolbar.add(customColorButton);
 
+        currentColorButton = new JButton();
+        currentColorButton.setMargin(new Insets(0, 0, 0, 0));
+        currentColorButton.setBounds(540, 45, 30,30);
+        currentColorButton.setBackground(Color.RED);
+        currentColorButton.setBorder(new LineBorder(new Color(115,115,115), 2));
+        toolbar.add(currentColorButton);
+
+
         redButton.setBackground(Color.RED);
-        redButton.setBounds(595, 10, 20, 20);
+        redButton.setBounds(595, 15, 20, 20);
         toolbar.add(redButton);
 
         orangeButton.setBackground(Color.ORANGE);
-        orangeButton.setBounds(635, 10, 20, 20);
+        orangeButton.setBounds(635, 15, 20, 20);
         toolbar.add(orangeButton);
 
         yellowButton.setBackground(Color.YELLOW);
-        yellowButton.setBounds(675, 10, 20, 20);
+        yellowButton.setBounds(675, 15, 20, 20);
         toolbar.add(yellowButton);
 
         greenButton.setBackground(Color.GREEN);
-        greenButton.setBounds(715,10,20,20);
+        greenButton.setBounds(715,15,20,20);
         toolbar.add(greenButton);
 
         blueButton.setBackground(Color.blue);
-        blueButton.setBounds(755,10,20,20);
+        blueButton.setBounds(755,15,20,20);
         toolbar.add(blueButton);
 
         magentaButton.setBackground(Color.MAGENTA);
-        magentaButton.setBounds(595, 40, 20, 20);
+        magentaButton.setBounds(595, 45, 20, 20);
         toolbar.add(magentaButton);
 
         blackButton.setBackground(Color.BLACK);
-        blackButton.setBounds(795,40,20,20);
+        blackButton.setBounds(795,45,20,20);
         toolbar.add(blackButton);
 
         whiteButton.setBackground(Color.WHITE);
-        whiteButton.setBounds(755, 40, 20, 20);
+        whiteButton.setBounds(755, 45, 20, 20);
         toolbar.add(whiteButton);
 
         pinkButton.setBackground(Color.PINK);
-        pinkButton.setBounds(635, 40, 20, 20);
+        pinkButton.setBounds(635, 45, 20, 20);
         toolbar.add(pinkButton);
 
         cyanButton.setBackground(Color.CYAN);
-        cyanButton.setBounds(795, 10, 20, 20);
+        cyanButton.setBounds(795, 15, 20, 20);
         toolbar.add(cyanButton);
 
         lightGrayButton.setBackground(Color.lightGray);
-        lightGrayButton.setBounds(675, 40, 20, 20);
+        lightGrayButton.setBounds(675, 45, 20, 20);
         toolbar.add(lightGrayButton);
 
         darkGrayButton.setBackground(Color.darkGray);
-        darkGrayButton.setBounds(715, 40, 20, 20);
+        darkGrayButton.setBounds(715, 45, 20, 20);
         toolbar.add(darkGrayButton);
 
 
@@ -359,29 +368,42 @@ public class ScribblerGUI extends JFrame implements ActionListener {
             }
         } else if (e.getSource() == redButton) {
             DrawTool.drawColor = Color.RED;
+            currentColorButton.setBackground(Color.RED);
         } else if (e.getSource() == orangeButton) {
             DrawTool.drawColor = Color.ORANGE;
+            currentColorButton.setBackground(Color.ORANGE);
         } else if (e.getSource() == greenButton) {
             DrawTool.drawColor = Color.GREEN;
+            currentColorButton.setBackground(Color.GREEN);
         } else if (e.getSource() == blueButton) {
             DrawTool.drawColor = Color.BLUE;
+            currentColorButton.setBackground(Color.BLUE);
         } else if (e.getSource() == yellowButton) {
             DrawTool.drawColor = Color.YELLOW;
+            currentColorButton.setBackground(Color.YELLOW);
         } else if (e.getSource() == magentaButton) {
             DrawTool.drawColor = Color.MAGENTA;
+            currentColorButton.setBackground(Color.MAGENTA);
         } else if (e.getSource() == blackButton) {
             DrawTool.drawColor = Color.BLACK;
+            currentColorButton.setBackground(Color.BLACK);
         } else if (e.getSource() == whiteButton) {
             DrawTool.drawColor = Color.WHITE;
+            currentColorButton.setBackground(Color.WHITE);
         } else if (e.getSource() == pinkButton) {
             DrawTool.drawColor = Color.PINK;
+            currentColorButton.setBackground(Color.PINK);
         } else if (e.getSource() == cyanButton) {
             DrawTool.drawColor = Color.CYAN;
+            currentColorButton.setBackground(Color.CYAN);
         } else if (e.getSource() == lightGrayButton) {
             DrawTool.drawColor = Color.lightGray;
+            currentColorButton.setBackground(Color.lightGray);
         } else if (e.getSource() == darkGrayButton) {
             DrawTool.drawColor = Color.darkGray;
+            currentColorButton.setBackground(Color.darkGray);
         }
+
 
         else if (e.getSource() == newCanvas) {
             //TODO: New Canvas Button
