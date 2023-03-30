@@ -6,6 +6,9 @@ public class DrawTool {
     public static int width;
     public static int height;
     public static Color drawColor;
+    //public static int r;
+    //public static int g;
+    //public static int b;
     public static int arcWidth;
 
     public static int arcHeight;

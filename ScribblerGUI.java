@@ -54,8 +54,14 @@ public class ScribblerGUI extends JFrame implements ActionListener {
     private JButton customColorButton;
 
     private JButton currentColorButton;
+
+    //Customization values
     public int toolHeight;
     public int toolWidth;
+
+    public int r;
+    public int g;
+    public int b;
 
     /**
      * Create the frame.
@@ -161,25 +167,26 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         toolbar.add(barSeparator2);
 
         //Buttons
-        customToolButton = new JButton("Pen");
-        customToolButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+        customToolButton = new JButton();
+        Icon drawIcon = new ImageIcon("pencilDraw_32x32.png");
+        customToolButton.setBackground(Color.WHITE);
         customToolButton.setBounds(36, 10, 35, 35);
         customToolButton.setMargin(new Insets(0, 0, 0, 0));
+        customToolButton.setIcon(drawIcon);
         toolbar.add(customToolButton);
 
-        eraseButton = new JButton("Erase");
-        eraseButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+        eraseButton = new JButton();
+        Icon eraserIcon = new ImageIcon("Eraser_32x32.png");
         eraseButton.setBounds(86, 10, 35, 35);
         eraseButton.setMargin(new Insets(0, 0, 0, 0));
+        eraseButton.setIcon(eraserIcon);
         toolbar.add(eraseButton);
 
-        clearButton = new JButton("Clear");
-        //Icon clearIcon = new ImageIcon("E:\editicon.PN");
-        clearButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+        clearButton = new JButton("CLEAR");
+        clearButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 9));
         clearButton.setBounds(136, 10, 35, 35);
         clearButton.setMargin(new Insets(0, 0, 0, 0));
         clearButton.setBackground(Color.WHITE);
-        //clearButton.setIcon(clearIcon);
         toolbar.add(clearButton);
 
         //TODO: Add more buttons
@@ -199,10 +206,11 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         lightGrayButton = new JButton();
         darkGrayButton = new JButton();
 
-        customColorButton = new JButton("CUSTOM"); //temporary
-        customColorButton.setFont(new Font("Comic Sans MS", Font.BOLD, 8));
+        customColorButton = new JButton();
+        Icon customColorIcon = new ImageIcon("color-wheel_28x28.png");
         customColorButton.setMargin(new Insets(0, 0, 0, 0));
         customColorButton.setBounds(540, 5, 30,30); //y20
+        customColorButton.setIcon(customColorIcon);
         toolbar.add(customColorButton);
 
         currentColorButton = new JButton();
@@ -266,6 +274,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
         //Button Action Listeners
         customToolButton.addActionListener(this);
+        customColorButton.addActionListener(this);
         eraseButton.addActionListener(this);
         clearButton.addActionListener(this);
         redButton.addActionListener(this);
@@ -339,6 +348,8 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         } else if (e.getSource() == eraseButton) {
             JTextField heightInput = new JTextField();
             JTextField widthInput = new JTextField();
+            int toolHeight;
+            int toolWidth;
 
             Object[] eraserSettings = {
                     "Height: ", heightInput,
@@ -402,6 +413,41 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         } else if (e.getSource() == darkGrayButton) {
             DrawTool.drawColor = Color.darkGray;
             currentColorButton.setBackground(Color.darkGray);
+        } else if (e.getSource() == customColorButton) {
+            JTextField redInput = new JTextField();
+            JTextField greenInput = new JTextField();
+            JTextField blueInput = new JTextField();
+
+
+            Object[] colorSettings = {
+                    "R: ", redInput,
+                    "G: ", greenInput,
+                    "B: ", blueInput
+            };
+
+            int option = JOptionPane.showConfirmDialog(null, colorSettings, "Custom Color Creator", JOptionPane.OK_CANCEL_OPTION);
+            if (option == JOptionPane.OK_OPTION) {
+                //TODO: Make it so it reasks for input when user enters invalid value
+                try {
+                    r = Integer.parseInt(redInput.getText());
+                    g = Integer.parseInt(greenInput.getText());
+                    b = Integer.parseInt(blueInput.getText());
+                    if (r > 255 || r < 0) {
+                        JOptionPane.showMessageDialog(null, "Enter valid R value");
+                    }
+                    if (g > 255 || g < 0) {
+                        JOptionPane.showMessageDialog(null, "Enter valid G value");
+                    }
+                    if (b > 255 || b < 0) {
+                        JOptionPane.showMessageDialog(null, "Enter valid B value");
+                    }
+                    DrawTool.drawColor = new Color(r, g, b);
+                    currentColorButton.setBackground(new Color(r, g, b));
+                }
+                catch (NumberFormatException n) {
+                    JOptionPane.showMessageDialog(null, "Enter valid RGB Values");
+                }
+            }
         }
 
 
