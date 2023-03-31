@@ -331,6 +331,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                     toolWidth = Integer.parseInt(widthInput.getText());
                     DrawTool.height = toolHeight;
                     DrawTool.width = toolWidth;
+                    DrawTool.drawColor = Color.RED;
 
                     if (toolHeight <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid height");
