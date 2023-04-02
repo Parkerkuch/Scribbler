@@ -10,29 +10,33 @@ import java.io.IOException;
 
 
 public class ScribblerGUI extends JFrame implements ActionListener {
-    private final DrawSurface canvasPanel;
+    private  DrawSurface canvasPanel;
     private JPanel scribPane;
-    private final JMenuBar menuBar;
-    private final JMenu fileMenu;
+    private  JMenuBar menuBar;
+    private  JMenu fileMenu;
 
-    private final JMenuItem newCanvas;
-    private final JMenuItem saveCanvas;
-    private final JMenuItem openCanvas;
-    private final JMenuItem menuEscape;
+    private  JMenuItem newCanvas;
+    private  JMenuItem saveCanvas;
+    private  JMenuItem openCanvas;
+    private  JMenuItem menuEscape;
 
-    private final JPanel toolbar;
-    private final JLabel toolLabel;
-    private final JLabel shapeLabel;
-    private final JLabel colorLabel;
+    private  JPanel toolbar;
+    private  JLabel toolLabel;
+    private  JLabel shapeLabel;
+    private  JLabel colorLabel;
 
-    private final JSlider zoomSlider;
-    private final JLabel plusZoom;
-    private final JLabel minusZoom;
+    private  JSlider zoomSlider;
+    private  JLabel plusZoom;
+    private  JLabel minusZoom;
 
-    private final JButton customToolButton;
-    private final JButton eraseButton;
+    private  JButton customToolButton;
+    private  JButton eraseButton;
 
     private JButton clearButton;
+
+    private JButton chiselButton;
+
+    //TODO Other button ideas
 
     private JButton redButton;
     private JButton orangeButton;
@@ -189,6 +193,13 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         clearButton.setBackground(Color.WHITE);
         toolbar.add(clearButton);
 
+        chiselButton = new JButton("Chisel");
+        chiselButton.setBounds(36, 50, 35, 35);
+        chiselButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
+        //add chisel button icon
+        chiselButton.setMargin(new Insets(0,0,0,0));
+        toolbar.add(chiselButton);
+
         //TODO: Add more buttons
 
 
@@ -277,6 +288,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         customColorButton.addActionListener(this);
         eraseButton.addActionListener(this);
         clearButton.addActionListener(this);
+        chiselButton.addActionListener(this);
         redButton.addActionListener(this);
         orangeButton.addActionListener(this);
         yellowButton.addActionListener(this);
@@ -449,6 +461,9 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Enter valid RGB Values");
                 }
             }
+        } else if (e.getSource() == chiselButton) {
+            DrawTool.height = 40;
+            DrawTool.width = 5;
         }
 
 
