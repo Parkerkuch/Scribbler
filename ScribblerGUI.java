@@ -70,9 +70,6 @@ public class ScribblerGUI extends JFrame implements ActionListener {
     public int toolHeight;
     public int toolWidth;
 
-    public int r;
-    public int g;
-    public int b;
 
     /**
      * Create the frame.
@@ -217,28 +214,24 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
         Icon squareIcon = new ImageIcon("square.png");
         squareButton.setBounds(260, 10, 40,40);
-//        squareButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
         squareButton.setMargin(new Insets(0,0,0,0));
         squareButton.setIcon(squareIcon);
         toolbar.add(squareButton);
 
         Icon triangleIcon = new ImageIcon("triangle.png");
         triangleButton.setBounds(310, 10, 40,40);
-//        triangleButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
         triangleButton.setMargin(new Insets(0,0,0,0));
         triangleButton.setIcon(triangleIcon);
         toolbar.add(triangleButton);
 
         Icon rectangleIcon = new ImageIcon("rectangle.png");
         rectangleButton.setBounds(360, 10, 40,40);
-//        rectangleButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
         rectangleButton.setMargin(new Insets(0,0,0,0));
         rectangleButton.setIcon(rectangleIcon);
         toolbar.add(rectangleButton);
 
         Icon circleIcon = new ImageIcon("circle.png");
         circleButton.setBounds(410, 10, 40,40);
-//        circleButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
         circleButton.setMargin(new Insets(0,0,0,0));
         circleButton.setIcon(circleIcon);
         toolbar.add(circleButton);
@@ -468,40 +461,10 @@ public class ScribblerGUI extends JFrame implements ActionListener {
             DrawTool.drawColor = Color.darkGray;
             currentColorButton.setBackground(Color.darkGray);
         } else if (e.getSource() == customColorButton) {
-            JTextField redInput = new JTextField();
-            JTextField greenInput = new JTextField();
-            JTextField blueInput = new JTextField();
+            ColorChooser cc = new ColorChooser();
+            DrawTool.drawColor = cc.getCC();
+            currentColorButton.setBackground(cc.getCC());
 
-
-            Object[] colorSettings = {
-                    "R: ", redInput,
-                    "G: ", greenInput,
-                    "B: ", blueInput
-            };
-
-            int option = JOptionPane.showConfirmDialog(null, colorSettings, "Custom Color Creator", JOptionPane.OK_CANCEL_OPTION);
-            if (option == JOptionPane.OK_OPTION) {
-                //TODO: Make it so it reasks for input when user enters invalid value
-                try {
-                    r = Integer.parseInt(redInput.getText());
-                    g = Integer.parseInt(greenInput.getText());
-                    b = Integer.parseInt(blueInput.getText());
-                    if (r > 255 || r < 0) {
-                        JOptionPane.showMessageDialog(null, "Enter valid R value");
-                    }
-                    if (g > 255 || g < 0) {
-                        JOptionPane.showMessageDialog(null, "Enter valid G value");
-                    }
-                    if (b > 255 || b < 0) {
-                        JOptionPane.showMessageDialog(null, "Enter valid B value");
-                    }
-                    DrawTool.drawColor = new Color(r, g, b);
-                    currentColorButton.setBackground(new Color(r, g, b));
-                }
-                catch (NumberFormatException n) {
-                    JOptionPane.showMessageDialog(null, "Enter valid RGB Values");
-                }
-            }
         } else if (e.getSource() == chiselButton) {
             DrawTool.height = 40;
             DrawTool.width = 5;
