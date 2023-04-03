@@ -210,37 +210,37 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         //TODO: Add more buttons
 
         //Shapes Buttons
-        squareButton = new JButton("Square");
-        triangleButton = new JButton("Triangle");
-        rectangleButton = new JButton("Rectangle");
-        circleButton = new JButton("Circle");
+        squareButton = new JButton();
+        triangleButton = new JButton();
+        rectangleButton = new JButton();
+        circleButton = new JButton();
 
-//      Icon squareIcon = new ImageIcon("square.png");
+        Icon squareIcon = new ImageIcon("square.png");
         squareButton.setBounds(260, 10, 40,40);
-        squareButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
+//        squareButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
         squareButton.setMargin(new Insets(0,0,0,0));
-//      squareButton.setIcon(squareIcon);
+        squareButton.setIcon(squareIcon);
         toolbar.add(squareButton);
 
-//      Icon triangleIcon = new ImageIcon("triangle.png");
+        Icon triangleIcon = new ImageIcon("triangle.png");
         triangleButton.setBounds(310, 10, 40,40);
-        triangleButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
+//        triangleButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
         triangleButton.setMargin(new Insets(0,0,0,0));
-//      triangleButton.setIcon(triangleIcon);
+        triangleButton.setIcon(triangleIcon);
         toolbar.add(triangleButton);
 
-//      Icon rectangleIcon = new ImageIcon("rectangle.png");
+        Icon rectangleIcon = new ImageIcon("rectangle.png");
         rectangleButton.setBounds(360, 10, 40,40);
-        rectangleButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
+//        rectangleButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
         rectangleButton.setMargin(new Insets(0,0,0,0));
-//      rectangleButton.setIcon(rectangleIcon);
+        rectangleButton.setIcon(rectangleIcon);
         toolbar.add(rectangleButton);
 
-//      Icon circleIcon = new ImageIcon("circle.png");
+        Icon circleIcon = new ImageIcon("circle.png");
         circleButton.setBounds(410, 10, 40,40);
-        circleButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
+//        circleButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
         circleButton.setMargin(new Insets(0,0,0,0));
-//      circleButton.setIcon(circleIcon);
+        circleButton.setIcon(circleIcon);
         toolbar.add(circleButton);
 
 
