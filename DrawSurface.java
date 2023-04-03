@@ -119,7 +119,9 @@ class DrawSurface extends JPanel {
             paintedImage = ImageIO.read(file);
             this.repaint();
         }
-        // update panel with new paint image
-        //repaint(); //we can use repaint to clear the canvas and will be usefull in creating new canvas
+    }
+
+    public void newCanvas() throws IOException {
+
     }
 }

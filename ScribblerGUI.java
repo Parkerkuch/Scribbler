@@ -478,17 +478,12 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         }
 
         else if (e.getSource() == saveCanvas) {
-            JFileChooser fc = new JFileChooser();
-            int value = fc.showSaveDialog(null);
-            if (value == JFileChooser.APPROVE_OPTION) {
-                String filename = fc.getSelectedFile().getName();
                 try {
                     canvasPanel.saveImage();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
             }
-        }
         else if (e.getSource() == openCanvas) {
                 try {
                     canvasPanel.openImage();

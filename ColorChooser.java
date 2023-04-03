@@ -13,6 +13,8 @@ public class ColorChooser extends
     ColorChooser() {
         initialColor = Color.RED;
 
+        newColor = Color.RED;
+
         // color chooser Dialog Box
         newColor = JColorChooser.showDialog(this,
                 "Select a color", initialColor);
