@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.nio.file.Path;
 
 //TODO: Create boolean "if drawing", then make sure if drawing is false, do not show the draw tool on the canvas (should fix cursor displaying shape problem)
@@ -75,8 +76,14 @@ class DrawSurface extends JPanel {
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        customTool.paintTool(g);
+        Graphics g2 = paintedImage.getGraphics();
+        customTool.paintTool(g2);
         g.drawImage(paintedImage, 0, 0, null);
+    }
+
+    public void clearCanvas() {
+        paintedImage = new BufferedImage(852, 680, BufferedImage.TYPE_INT_ARGB);
+        repaint();
     }
 
     /**
@@ -90,8 +97,9 @@ class DrawSurface extends JPanel {
         JFileChooser fc = new JFileChooser();
         int value = fc.showSaveDialog(null);
         if (value == JFileChooser.APPROVE_OPTION) {
-            String filename = fc.getSelectedFile().getName();
-            ImageIO.write(paintedImage, "png", new File(filename));
+            File file = fc.getSelectedFile();
+            System.out.println("filename " + file.getAbsolutePath());
+            ImageIO.write(paintedImage, "png", file);
             System.out.println("all saved");
 
         }
@@ -107,8 +115,9 @@ class DrawSurface extends JPanel {
         JFileChooser fc = new JFileChooser();
         int value = fc.showOpenDialog(null);
         if (value == JFileChooser.APPROVE_OPTION) {
-            String filename = fc.getSelectedFile().getName();
-            paintedImage = ImageIO.read(new File(filename));
+            File file = fc.getSelectedFile();
+            paintedImage = ImageIO.read(file);
+            this.repaint();
         }
         // update panel with new paint image
         //repaint(); //we can use repaint to clear the canvas and will be usefull in creating new canvas
