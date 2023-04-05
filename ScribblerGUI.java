@@ -462,8 +462,10 @@ public class ScribblerGUI extends JFrame implements ActionListener {
             currentColorButton.setBackground(Color.darkGray);
         } else if (e.getSource() == customColorButton) {
             ColorChooser cc = new ColorChooser();
-            DrawTool.drawColor = cc.getCC();
-            currentColorButton.setBackground(cc.getCC());
+            if (cc.getCC() != null) {
+                DrawTool.drawColor = cc.getCC();
+                currentColorButton.setBackground(cc.getCC());
+            }
 
         } else if (e.getSource() == chiselButton) {
             DrawTool.height = 40;

@@ -11,17 +11,13 @@ public class ColorChooser extends
     public Color newColor;
     // Constructor
     ColorChooser() {
-        initialColor = Color.RED;
+        initialColor = DrawTool.drawColor;
 
-        newColor = Color.RED;
-
-        // color chooser Dialog Box
         newColor = JColorChooser.showDialog(this,
                 "Select a color", initialColor);
 
-        //DrawTool.drawColor = color;
-
-    }
+        }
+        //figure out how to not set color to transparent when window is exited
 
     public Color getCC() {
         return newColor;
