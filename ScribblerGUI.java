@@ -36,7 +36,10 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
     private JButton chiselButton;
 
-    //TODO Other button ideas
+    private JButton fineButton;
+
+    private JButton roundButton;
+
     private JButton squareButton;
 
     private JButton rectangleButton;
@@ -132,7 +135,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
 
         //Zoom feature
-        zoomSlider = new JSlider();
+        /*zoomSlider = new JSlider();
         zoomSlider.setBounds(600, 582, 200, 22);
         zoomSlider.setBorder(new EmptyBorder(0, 0, 0, 0));
 
@@ -141,7 +144,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
         minusZoom = new JLabel("-");
         minusZoom.setBounds(545, 582, 45, 13);
-        minusZoom.setHorizontalAlignment(SwingConstants.TRAILING);
+        minusZoom.setHorizontalAlignment(SwingConstants.TRAILING);*/
 
         //Canvas creation
         canvasPanel = new DrawSurface();
@@ -150,9 +153,9 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
         //additions to pane and toolbar
         scribPane.setLayout(null);
-        scribPane.add(minusZoom);
+        /*scribPane.add(minusZoom);
         scribPane.add(zoomSlider);
-        scribPane.add(plusZoom);
+        scribPane.add(plusZoom);*/
         scribPane.add(toolbar);
         toolbar.setLayout(null);
         toolbar.add(toolLabel);
@@ -190,6 +193,9 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         eraseButton.setIcon(eraserIcon);
         toolbar.add(eraseButton);
 
+        roundButton = new JButton("Round");
+
+
         clearButton = new JButton("CLEAR");
         clearButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 9));
         clearButton.setBounds(136, 10, 35, 35);
@@ -197,14 +203,25 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         clearButton.setBackground(Color.WHITE);
         toolbar.add(clearButton);
 
+        roundButton = new JButton("Round");
+        roundButton.setBounds(36,50,35,35);
+        //add round button icon
+        roundButton.setMargin(new Insets(0,0,0,0));
+        toolbar.add(roundButton);
+
         chiselButton = new JButton("Chisel");
-        chiselButton.setBounds(36, 50, 35, 35);
+        chiselButton.setBounds(86, 50, 35, 35);
         chiselButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
         //add chisel button icon
         chiselButton.setMargin(new Insets(0,0,0,0));
         toolbar.add(chiselButton);
 
         //TODO: Add more buttons
+
+        fineButton = new JButton("Fine");
+        fineButton.setBounds(136, 50, 35, 35);
+        fineButton.setMargin(new Insets(0,0,0,0));
+        toolbar.add(fineButton);
 
         //Shapes Buttons
         squareButton = new JButton();
@@ -323,6 +340,8 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         eraseButton.addActionListener(this);
         clearButton.addActionListener(this);
         chiselButton.addActionListener(this);
+        fineButton.addActionListener(this);
+        roundButton.addActionListener(this);
         redButton.addActionListener(this);
         orangeButton.addActionListener(this);
         yellowButton.addActionListener(this);
@@ -361,6 +380,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
         //When user clicks, allow them to customize width and height of tool
         if (e.getSource() == customToolButton) {
+            DrawTool.isSquare = true;
             JTextField heightInput = new JTextField();
             JTextField widthInput = new JTextField();
             Object[] penSettings = {
@@ -468,8 +488,13 @@ public class ScribblerGUI extends JFrame implements ActionListener {
             }
 
         } else if (e.getSource() == chiselButton) {
-            DrawTool.height = 40;
-            DrawTool.width = 5;
+                DrawTool.height = 40;
+                DrawTool.width = 5;
+        } else if (e.getSource() == fineButton) {
+            DrawTool.height = 4;
+            DrawTool.width = 4;
+        } else if (e.getSource() == roundButton) {
+            DrawTool.isSquare = false;
         }
 
 

@@ -6,19 +6,16 @@ public class DrawTool {
     public static int width;
     public static int height;
     public static Color drawColor;
-    //public static int r;
-    //public static int g;
-    //public static int b;
-    public static int arcWidth;
-
-    public static int arcHeight;
+    public static boolean isSquare;
 
     public DrawTool() {
-        //TODO: Decide on default tool dimensions/color
         setWidth(20);
         setHeight(20);
         setColor(Color.RED);
+        isSquare = false;
     }
+
+
 
     public void setX(int xPos){
         this.xPos = xPos;
@@ -44,24 +41,7 @@ public class DrawTool {
     public int getHeight(){
         return height;
     }
-    public void setArcWidth(int arcLength) {
-        this.arcWidth = arcWidth;
-    }
-    public int getArcWidth() {
-        return arcWidth;
-    }
 
-    public void setArcHeight(int arcHeight) {
-        this.arcHeight = arcHeight;
-    }
-
-    public int getArcHeight() {
-        return arcHeight;
-    }
-
-    public Color getColor() {
-        return drawColor;
-    }
     public void setColor(Color drawColor) {
         this.drawColor = drawColor;
     }
@@ -69,28 +49,14 @@ public class DrawTool {
      *
      * @param g Graphics object to call upon
      */
-    public void paintTool(Graphics g){
-        //add if statements to check for selected tool, store all in one method
-        //TODO: Add if statements to check for selected tool once tools are added
+    public void paintSquare(Graphics g){
         g.setColor(drawColor);
-        //TODO: Come up with a way to dynamically change color
         g.fillRect(xPos, yPos, width, height);
-        //TODO: Implement other shapes
     }
 
-
-
-    /**
-     *
-     * @param g
-     */
-    /*public void paintCircle(Graphics g) {
-        setWidth(10);
-        setHeight(10);
-        setArcWidth(100);
-        setArcHeight(100);
-        g.setColor(Color.BLUE);
-        //g.fillRoundRect(xPos, yPos, width, height, arcWidth, arcHeight);
-    }*/
+    public void paintRound(Graphics g) {
+        g.setColor(drawColor);
+        g.fillOval(xPos, yPos, width,height);
+    }
 
 }

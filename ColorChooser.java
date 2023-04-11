@@ -17,8 +17,6 @@ public class ColorChooser extends
                 "Select a color", initialColor);
 
         }
-        //figure out how to not set color to transparent when window is exited
-
     public Color getCC() {
         return newColor;
     }
