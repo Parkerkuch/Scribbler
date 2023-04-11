@@ -6,6 +6,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 
@@ -25,9 +26,6 @@ public class ScribblerGUI extends JFrame implements ActionListener {
     private  JLabel shapeLabel;
     private  JLabel colorLabel;
 
-    private  JSlider zoomSlider;
-    private  JLabel plusZoom;
-    private  JLabel minusZoom;
 
     private  JButton customToolButton;
     private  JButton eraseButton;
@@ -146,9 +144,6 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
         //additions to pane and toolbar
         scribPane.setLayout(null);
-        /*scribPane.add(minusZoom);
-        scribPane.add(zoomSlider);
-        scribPane.add(plusZoom);*/
         scribPane.add(toolbar);
         toolbar.setLayout(null);
         toolbar.add(toolLabel);
@@ -194,9 +189,12 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         clearButton.setBackground(Color.WHITE);
         toolbar.add(clearButton);
 
-        backgroundButton = new JButton("BG");
+        backgroundButton = new JButton();
+        ImageIcon backgroundIcon = new ImageIcon("paintRoller_32x32.jpg");
         backgroundButton.setBounds(250, 50, 35, 35);
         backgroundButton.setMargin(new Insets(0, 0, 0, 0));
+        backgroundButton.setBackground(Color.WHITE);
+        backgroundButton.setIcon(backgroundIcon);
         toolbar.add(backgroundButton);
 
         roundButton = new JButton();
@@ -354,6 +352,8 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         fineButton.addActionListener(this);
         roundButton.addActionListener(this);
         brushButton.addActionListener(this);
+        backgroundButton.addActionListener(this);
+
         redButton.addActionListener(this);
         orangeButton.addActionListener(this);
         yellowButton.addActionListener(this);
@@ -368,7 +368,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         darkGrayButton.addActionListener(this);
 
         //Creating sliders for height and width
-        JSlider heightSlider = new JSlider();
+        JSlider heightSlider = new JSlider(0, 60, 20);
         heightSlider.setBounds(186, -5, 50, 50);
         heightSlider.setBorder(new EmptyBorder(0,0,0,0));
         heightSlider.setOpaque(false);
@@ -379,7 +379,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         heightLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
         toolbar.add(heightLabel);
 
-        JSlider widthSlider = new JSlider();
+        JSlider widthSlider = new JSlider(0, 60, 20);
         widthSlider.setBounds(186, 35, 50, 50);
         widthSlider.setBorder(new EmptyBorder(0,0,0,0));
         widthSlider.setOpaque(false);
@@ -532,6 +532,11 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         } else if (e.getSource() == brushButton) {
             DrawTool.height = 25;
             DrawTool.width = 8;
+        } else if (e.getSource() == backgroundButton) {
+            ColorChooser cc2 = new ColorChooser();
+            if (cc2.getCC() != null) {
+                //set background color of buffered image
+            }
         }
 
 

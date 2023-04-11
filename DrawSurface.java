@@ -11,7 +11,7 @@ import java.io.IOException;
         //This can be done using mouse listener class (link in discord) (mousePressed/mouseClicked/mouseExited/other??)
 class DrawSurface extends JPanel {
     DrawTool customTool = new DrawTool();
-    BufferedImage paintedImage = new BufferedImage(852, 680, BufferedImage.TYPE_INT_ARGB);
+    static BufferedImage paintedImage = new BufferedImage(852, 680, BufferedImage.TYPE_INT_ARGB);
 
 
 
