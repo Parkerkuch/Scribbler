@@ -34,9 +34,14 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
     private JButton clearButton;
 
+    private JButton backgroundButton;
+
     private JButton chiselButton;
 
     private JButton fineButton;
+
+    private JButton brushButton;
+
 
     private JButton roundButton;
 
@@ -116,13 +121,13 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
         //toolbar components
         toolLabel = new JLabel("Tools");
-        toolLabel.setBounds(86, 84, 74, 21);
+        toolLabel.setBounds(106, 84, 74, 21);
         toolLabel.setVerticalAlignment(SwingConstants.BOTTOM);
         toolLabel.setHorizontalAlignment(SwingConstants.CENTER);
         toolLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
         shapeLabel = new JLabel("Shapes");
-        shapeLabel.setBounds(355, 84, 74, 21);
+        shapeLabel.setBounds(375, 84, 74, 21);
         shapeLabel.setVerticalAlignment(SwingConstants.BOTTOM);
         shapeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         shapeLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -133,18 +138,6 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         colorLabel.setHorizontalAlignment(SwingConstants.CENTER);
         colorLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
-
-        //Zoom feature
-        /*zoomSlider = new JSlider();
-        zoomSlider.setBounds(600, 582, 200, 22);
-        zoomSlider.setBorder(new EmptyBorder(0, 0, 0, 0));
-
-        plusZoom = new JLabel("+");
-        plusZoom.setBounds(804, 582, 35, 13);
-
-        minusZoom = new JLabel("-");
-        minusZoom.setBounds(545, 582, 45, 13);
-        minusZoom.setHorizontalAlignment(SwingConstants.TRAILING);*/
 
         //Canvas creation
         canvasPanel = new DrawSurface();
@@ -167,7 +160,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         barSeparator.setOrientation(SwingConstants.VERTICAL);
         barSeparator.setBackground(SystemColor.activeCaption);
         barSeparator.setForeground(SystemColor.activeCaption);
-        barSeparator.setBounds(250, 0, 7, 105);
+        barSeparator.setBounds(290, 0, 7, 105);
         toolbar.add(barSeparator);
 
         JSeparator barSeparator2 = new JSeparator();
@@ -193,17 +186,20 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         eraseButton.setIcon(eraserIcon);
         toolbar.add(eraseButton);
 
-        roundButton = new JButton("Round");
-
 
         clearButton = new JButton("CLEAR");
         clearButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 9));
-        clearButton.setBounds(136, 10, 35, 35);
+        clearButton.setBounds(250, 10, 35, 35);
         clearButton.setMargin(new Insets(0, 0, 0, 0));
         clearButton.setBackground(Color.WHITE);
         toolbar.add(clearButton);
 
-        roundButton = new JButton("Round");
+        backgroundButton = new JButton("BG");
+        backgroundButton.setBounds(250, 50, 35, 35);
+        backgroundButton.setMargin(new Insets(0, 0, 0, 0));
+        toolbar.add(backgroundButton);
+
+        roundButton = new JButton();
         roundButton.setBackground(Color.WHITE);
         roundButton.setBounds(36,50,35,35);
         roundButton.setVerticalAlignment(SwingConstants.CENTER);
@@ -213,22 +209,30 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         roundButton.setIcon(roundIcon);
         toolbar.add(roundButton);
 
-        chiselButton = new JButton("Chisel");
+        chiselButton = new JButton();
         chiselButton.setBounds(86, 50, 35, 35);
         chiselButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
         Icon chiselIcon = new ImageIcon("chiselTip_32x32.png");
         chiselButton.setIcon(chiselIcon);
+        chiselButton.setBackground(Color.WHITE);
         chiselButton.setMargin(new Insets(0,0,0,0));
         toolbar.add(chiselButton);
 
-        //TODO: Add more buttons
-
-        fineButton = new JButton("Fine");
+        fineButton = new JButton();
         fineButton.setBounds(136, 50, 35, 35);
         fineButton.setMargin(new Insets(0,0,0,0));
         Icon fineIcon = new ImageIcon("fineTip_32x32.png");
+        fineButton.setBackground(Color.WHITE);
         fineButton.setIcon(fineIcon);
         toolbar.add(fineButton);
+
+        brushButton = new JButton();
+        brushButton.setBounds(136,10,35,35);
+        brushButton.setBackground(Color.white);
+        brushButton.setMargin(new Insets(0,0,0,0));
+        Icon brushIcon = new ImageIcon("brushIcon_32x32.png");
+        brushButton.setIcon(brushIcon);
+        toolbar.add(brushButton);
 
         //Shapes Buttons
         squareButton = new JButton();
@@ -237,25 +241,25 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         circleButton = new JButton();
 
         Icon squareIcon = new ImageIcon("square.png");
-        squareButton.setBounds(260, 10, 40,40);
+        squareButton.setBounds(300, 10, 40,40);
         squareButton.setMargin(new Insets(0,0,0,0));
         squareButton.setIcon(squareIcon);
         toolbar.add(squareButton);
 
         Icon triangleIcon = new ImageIcon("triangle.png");
-        triangleButton.setBounds(310, 10, 40,40);
+        triangleButton.setBounds(350, 10, 40,40);
         triangleButton.setMargin(new Insets(0,0,0,0));
         triangleButton.setIcon(triangleIcon);
         toolbar.add(triangleButton);
 
         Icon rectangleIcon = new ImageIcon("rectangle.png");
-        rectangleButton.setBounds(360, 10, 40,40);
+        rectangleButton.setBounds(400, 10, 40,40);
         rectangleButton.setMargin(new Insets(0,0,0,0));
         rectangleButton.setIcon(rectangleIcon);
         toolbar.add(rectangleButton);
 
         Icon circleIcon = new ImageIcon("circle.png");
-        circleButton.setBounds(410, 10, 40,40);
+        circleButton.setBounds(450, 10, 40,40);
         circleButton.setMargin(new Insets(0,0,0,0));
         circleButton.setIcon(circleIcon);
         toolbar.add(circleButton);
@@ -349,6 +353,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         chiselButton.addActionListener(this);
         fineButton.addActionListener(this);
         roundButton.addActionListener(this);
+        brushButton.addActionListener(this);
         redButton.addActionListener(this);
         orangeButton.addActionListener(this);
         yellowButton.addActionListener(this);
@@ -362,6 +367,28 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         lightGrayButton.addActionListener(this);
         darkGrayButton.addActionListener(this);
 
+        //Creating sliders for height and width
+        JSlider heightSlider = new JSlider();
+        heightSlider.setBounds(186, -5, 50, 50);
+        heightSlider.setBorder(new EmptyBorder(0,0,0,0));
+        heightSlider.setOpaque(false);
+        toolbar.add(heightSlider);
+
+        JLabel heightLabel = new JLabel("Height");
+        heightLabel.setBounds(193,18, 50,30);
+        heightLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
+        toolbar.add(heightLabel);
+
+        JSlider widthSlider = new JSlider();
+        widthSlider.setBounds(186, 35, 50, 50);
+        widthSlider.setBorder(new EmptyBorder(0,0,0,0));
+        widthSlider.setOpaque(false);
+        toolbar.add(widthSlider);
+
+        JLabel widthLabel = new JLabel("Width");
+        widthLabel.setBounds(193,58, 50,30);
+        widthLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
+        toolbar.add(widthLabel);
 
         //Layout stuff
         scribPane.add(canvasPanel);
@@ -502,6 +529,9 @@ public class ScribblerGUI extends JFrame implements ActionListener {
             DrawTool.width = 4;
         } else if (e.getSource() == roundButton) {
             DrawTool.isSquare = false;
+        } else if (e.getSource() == brushButton) {
+            DrawTool.height = 25;
+            DrawTool.width = 8;
         }
 
 
