@@ -86,7 +86,6 @@ class DrawSurface extends JPanel {
             File file = fc.getSelectedFile();
             System.out.println("filename " + file.getAbsolutePath());
             ImageIO.write(paintedImage, "png", file);
-            System.out.println("all saved");
 
         }
     }
@@ -106,8 +105,29 @@ class DrawSurface extends JPanel {
         }
     }
 
-    //TODO
-    public void newCanvas() throws IOException {
+    public boolean askSave() {
+        boolean isSaving;
+        int choice = JOptionPane.showConfirmDialog(null, "Would you like to save your current work?", "", JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            isSaving = true;
+        }
+        else {
+            isSaving = false;
+        }
+        return isSaving;
+    }
 
+    public void newCanvas() throws IOException {
+        if (askSave()) {
+            try {
+                saveImage();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            clearCanvas();
+        }
+        else {
+            clearCanvas();
+        }
     }
 }

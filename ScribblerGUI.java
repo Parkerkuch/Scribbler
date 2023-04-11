@@ -204,15 +204,20 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         toolbar.add(clearButton);
 
         roundButton = new JButton("Round");
+        roundButton.setBackground(Color.WHITE);
         roundButton.setBounds(36,50,35,35);
-        //add round button icon
+        roundButton.setVerticalAlignment(SwingConstants.CENTER);
+        roundButton.setHorizontalAlignment(SwingConstants.CENTER);
+        Icon roundIcon = new ImageIcon("ballPenIcon_32x32.png");
         roundButton.setMargin(new Insets(0,0,0,0));
+        roundButton.setIcon(roundIcon);
         toolbar.add(roundButton);
 
         chiselButton = new JButton("Chisel");
         chiselButton.setBounds(86, 50, 35, 35);
         chiselButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
-        //add chisel button icon
+        Icon chiselIcon = new ImageIcon("chiselTip_32x32.png");
+        chiselButton.setIcon(chiselIcon);
         chiselButton.setMargin(new Insets(0,0,0,0));
         toolbar.add(chiselButton);
 
@@ -221,6 +226,8 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         fineButton = new JButton("Fine");
         fineButton.setBounds(136, 50, 35, 35);
         fineButton.setMargin(new Insets(0,0,0,0));
+        Icon fineIcon = new ImageIcon("fineTip_32x32.png");
+        fineButton.setIcon(fineIcon);
         toolbar.add(fineButton);
 
         //Shapes Buttons
@@ -499,7 +506,11 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
 
         else if (e.getSource() == newCanvas) {
-            //TODO: New Canvas Button
+            try {
+                canvasPanel.newCanvas();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         } else if (e.getSource() == clearButton) {
             canvasPanel.clearCanvas();
         }
