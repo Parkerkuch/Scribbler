@@ -68,8 +68,11 @@ class DrawSurface extends JPanel {
         g.drawImage(paintedImage, 0, 0, null);
     }
 
-    public void clearCanvas() {
-        paintedImage = new BufferedImage(852, 680, BufferedImage.TYPE_INT_ARGB);
+    public void clearCanvas(Color bg) {
+        Graphics testG = paintedImage.getGraphics();
+        System.out.println("Got here " + bg);
+        testG.setColor(bg);
+        testG.fillRect(0,0,852,680);
         repaint();
     }
 
@@ -77,14 +80,17 @@ class DrawSurface extends JPanel {
      * Saves image to disk
      * @throws IOException
      */
-    public void saveImage() throws IOException {
+    public boolean saveImage() throws IOException {
         JFileChooser fc = new JFileChooser();
         int value = fc.showSaveDialog(null);
         if (value == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
             System.out.println("filename " + file.getAbsolutePath());
             ImageIO.write(paintedImage, "png", file);
-
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
@@ -115,17 +121,20 @@ class DrawSurface extends JPanel {
         return isSaving;
     }
 
-    public void newCanvas() throws IOException {
+    public void newCanvas(Color bg) throws IOException {
         if (askSave()) {
+            boolean saveRet;
             try {
-                saveImage();
+                saveRet = saveImage();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-            clearCanvas();
+            if (saveRet == true) {
+                clearCanvas(Color.WHITE);
+            }
         }
         else {
-            clearCanvas();
+            clearCanvas(Color.WHITE);
         }
     }
 }

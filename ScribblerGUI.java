@@ -34,6 +34,8 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
     private JButton backgroundButton;
 
+    private Color backgroundColor;
+
     private JButton chiselButton;
 
     private JButton fineButton;
@@ -110,6 +112,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         scribPane.setBackground(new Color(230, 230, 250));
         scribPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(scribPane);
+        backgroundColor = Color.WHITE;
 
         //toolbar creation
         toolbar = new JPanel();
@@ -533,21 +536,24 @@ public class ScribblerGUI extends JFrame implements ActionListener {
             DrawTool.height = 25;
             DrawTool.width = 8;
         } else if (e.getSource() == backgroundButton) {
+            //TODO add warning to tell user that it also clears whole canvas
             ColorChooser cc2 = new ColorChooser();
             if (cc2.getCC() != null) {
-                //set background color of buffered image
+                backgroundColor = cc2.getCC();
+                canvasPanel.clearCanvas(backgroundColor);
             }
         }
 
 
         else if (e.getSource() == newCanvas) {
             try {
-                canvasPanel.newCanvas();
+                canvasPanel.newCanvas(backgroundColor);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+            backgroundColor = Color.WHITE;
         } else if (e.getSource() == clearButton) {
-            canvasPanel.clearCanvas();
+            canvasPanel.clearCanvas(backgroundColor);
         }
 
         else if (e.getSource() == saveCanvas) {
@@ -563,6 +569,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                backgroundColor = Color.WHITE;
             }
         }
     }
