@@ -11,6 +11,7 @@ import java.io.IOException;
         //This can be done using mouse listener class (link in discord) (mousePressed/mouseClicked/mouseExited/other??)
 class DrawSurface extends JPanel {
     DrawTool customTool = new DrawTool();
+
     static BufferedImage paintedImage = new BufferedImage(852, 680, BufferedImage.TYPE_INT_ARGB);
 
 
@@ -61,6 +62,7 @@ class DrawSurface extends JPanel {
         Graphics g2 = paintedImage.getGraphics();
         if (DrawTool.isSquare == true) {
             customTool.paintSquare(g2);
+
         }
         else {
             customTool.paintRound(g2);

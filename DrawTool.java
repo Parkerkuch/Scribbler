@@ -59,4 +59,11 @@ public class DrawTool {
         g.fillOval(xPos, yPos, width,height);
     }
 
+    public void drawSquare(Graphics g){
+        g.setColor(drawColor);
+        g.drawRect(xPos, yPos, width, width);
+    }
+
+
+
 }

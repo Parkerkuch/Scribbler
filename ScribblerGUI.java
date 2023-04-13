@@ -370,6 +370,12 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         lightGrayButton.addActionListener(this);
         darkGrayButton.addActionListener(this);
 
+        squareButton.addActionListener(this);
+        rectangleButton.addActionListener(this);
+        triangleButton.addActionListener(this);
+        circleButton.addActionListener(this);
+
+
         //Creating sliders for height and width
         JSlider heightSlider = new JSlider(0, 60, 20);
         heightSlider.setBounds(186, -5, 50, 50);
@@ -481,6 +487,14 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Enter a valid integer");
                 }
             }
+        } else if(e.getSource() == squareButton){
+
+        } else if(e.getSource() == rectangleButton){
+
+        } else if(e.getSource() == triangleButton){
+
+        } else if(e.getSource() == circleButton){
+
         } else if (e.getSource() == redButton) {
             DrawTool.drawColor = Color.RED;
             currentColorButton.setBackground(Color.RED);
