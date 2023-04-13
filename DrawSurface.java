@@ -76,6 +76,7 @@ class DrawSurface extends JPanel {
         repaint();
     }
 
+
     /**
      * Saves image to disk
      * @throws IOException
