@@ -550,11 +550,13 @@ public class ScribblerGUI extends JFrame implements ActionListener {
             DrawTool.height = 25;
             DrawTool.width = 8;
         } else if (e.getSource() == backgroundButton) {
-            //TODO add warning to tell user that it also clears whole canvas
-            ColorChooser cc2 = new ColorChooser();
-            if (cc2.getCC() != null) {
-                backgroundColor = cc2.getCC();
-                canvasPanel.clearCanvas(backgroundColor);
+            int choice = JOptionPane.showConfirmDialog(null, "WARNING: Changing background color clears the current canvas. Would you still like to proceed?", "", JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                ColorChooser cc2 = new ColorChooser();
+                if (cc2.getCC() != null) {
+                    backgroundColor = cc2.getCC();
+                    canvasPanel.clearCanvas(backgroundColor);
+                }
             }
         }
 
