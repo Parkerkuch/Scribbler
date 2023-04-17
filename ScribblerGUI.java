@@ -6,7 +6,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 
@@ -431,8 +430,6 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                     "Width: ", widthInput,
             };
 
-            //Window that pops up when user clicks custom draw tool, sets user defined dimensions for tool
-            //TODO: consider adding a conditional to make sure the user enters a valid input
             int option = JOptionPane.showConfirmDialog(null, penSettings, "Custom Tool Settings", JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {
                 try {
@@ -449,7 +446,6 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                         JOptionPane.showMessageDialog(null, "Enter a valid width");
                     }
 
-                    //System.out.println("Width: " + toolWidth + ", Height: " + toolHeight);
                 }
                 catch (NumberFormatException n){
                     JOptionPane.showMessageDialog(null, "Enter a valid integer");
@@ -474,8 +470,6 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                     DrawTool.height = toolHeight;
                     DrawTool.width = toolWidth;
                     DrawTool.drawColor = Color.WHITE;
-                    //System.out.println("Width: " + toolWidth + ", Height: " + toolHeight);
-                    //TODO: Whenever user enters invalid input, the window closes, we need to keep it open and just reask for input
                     if (toolHeight <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid height");
                     }

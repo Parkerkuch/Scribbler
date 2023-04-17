@@ -77,7 +77,6 @@ class DrawSurface extends JPanel {
      */
     public void clearCanvas(Color bg) {
         Graphics g = paintedImage.getGraphics();
-        //System.out.println("Got here " + bg);
         g.setColor(bg);
         g.fillRect(0,0,852,680);
         repaint();
@@ -92,7 +91,6 @@ class DrawSurface extends JPanel {
         int value = fc.showSaveDialog(null);
         if (value == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
-            //System.out.println("filename " + file.getAbsolutePath());
             ImageIO.write(paintedImage, "png", file);
             return true;
         }

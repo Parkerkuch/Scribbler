@@ -1,6 +1,5 @@
 // Java program to implement JColorChooser
 // class using ActionListener
-import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
