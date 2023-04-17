@@ -9,7 +9,10 @@ public class ColorChooser extends
 
     public Color initialColor;
     public Color newColor;
-    // Constructor
+
+    /**
+     * Constructor for color choser pane
+     */
     ColorChooser() {
         initialColor = DrawTool.drawColor;
 
@@ -17,6 +20,11 @@ public class ColorChooser extends
                 "Select a color", initialColor);
 
         }
+
+    /**
+     *
+     * @return New color selected by user
+     */
     public Color getCC() {
         return newColor;
     }
