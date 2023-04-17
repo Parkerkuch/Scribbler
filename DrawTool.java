@@ -8,9 +8,6 @@ public class DrawTool {
     public static Color drawColor;
     public static boolean isSquare;
 
-    /**
-     * Default constructor for drawing tool
-     */
     public DrawTool() {
         setWidth(20);
         setHeight(20);
@@ -48,8 +45,13 @@ public class DrawTool {
     public void setColor(Color drawColor) {
         this.drawColor = drawColor;
     }
+
+    public Color getDrawColor(){
+        return drawColor;
+    }
+
     /**
-     * Uses square as draw tool
+     *
      * @param g Graphics object to call upon
      */
     public void paintSquare(Graphics g){
@@ -57,23 +59,15 @@ public class DrawTool {
         g.fillRect(xPos, yPos, width, height);
     }
 
-    /**
-     * Uses oval as draw tool
-     * @param g Graphics object
-     */
     public void paintRound(Graphics g) {
         g.setColor(drawColor);
         g.fillOval(xPos, yPos, width,height);
     }
 
-    /**
-     *
-     * @param g Graphics object
-     */
-    /*public void drawSquare(Graphics g){
+    public void drawSquare(Graphics g){
         g.setColor(drawColor);
         g.drawRect(xPos, yPos, width, width);
-    }*/
+    }
 
 
 

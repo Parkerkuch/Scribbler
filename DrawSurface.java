@@ -36,7 +36,6 @@ class DrawSurface extends JPanel {
     }
 
     /**
-     * Tracks tool movement
      * @param x = coordinate x corresponding to location on canvas in width
      * @param y = coordinate y corresponding to location on canvas in height
      */
@@ -54,7 +53,7 @@ class DrawSurface extends JPanel {
 
 
     /**
-     * Paints on the canvas with the mouse
+     *
      * @param g the <code>Graphics</code> object to protect
      */
     @Override
@@ -71,12 +70,9 @@ class DrawSurface extends JPanel {
         g.drawImage(paintedImage, 0, 0, null);
     }
 
-    /**
-     * Clears the canvas
-     * @param bg background color of canvas
-     */
     public void clearCanvas(Color bg) {
         Graphics g = paintedImage.getGraphics();
+        //System.out.println("Got here " + bg);
         g.setColor(bg);
         g.fillRect(0,0,852,680);
         repaint();
@@ -91,6 +87,7 @@ class DrawSurface extends JPanel {
         int value = fc.showSaveDialog(null);
         if (value == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
+            //System.out.println("filename " + file.getAbsolutePath());
             ImageIO.write(paintedImage, "png", file);
             return true;
         }
@@ -104,6 +101,7 @@ class DrawSurface extends JPanel {
      * @throws IOException
      */
     public void openImage() throws IOException {
+        //add save current image pop up
         JFileChooser fc = new JFileChooser();
         int value = fc.showOpenDialog(null);
         if (value == JFileChooser.APPROVE_OPTION) {
@@ -113,10 +111,6 @@ class DrawSurface extends JPanel {
         }
     }
 
-    /**
-     * Asks user if they want to save their current work or not
-     * @return if user wants to save or not
-     */
     public boolean askSave() {
         boolean isSaving;
         int choice = JOptionPane.showConfirmDialog(null, "Would you like to save your current work?", "", JOptionPane.YES_NO_OPTION);
@@ -129,11 +123,6 @@ class DrawSurface extends JPanel {
         return isSaving;
     }
 
-    /**
-     * Creates a new canvas with specified background color
-     * @param bg background color of canvas
-     * @throws IOException
-     */
     public void newCanvas(Color bg) throws IOException {
         if (askSave()) {
             boolean saveRet;
