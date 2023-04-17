@@ -439,10 +439,13 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                     DrawTool.width = toolWidth;
                     DrawTool.drawColor = Color.RED;
 
-                    if (toolHeight <= 0 || toolHeight >= 818) {
+                    if ((toolHeight <= 0 || toolHeight >= 818)&&(toolWidth <= 0 || toolHeight >= 818)) {
+                        JOptionPane.showMessageDialog(null, "Enter valid height and width");
+                    }
+                    else if (toolHeight <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid height");
                     }
-                    if (toolWidth <= 0 || toolHeight >= 818) {
+                    else if (toolWidth <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid width");
                     }
 
@@ -475,10 +478,13 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                     else {
                         DrawTool.drawColor = Color.WHITE;
                     }
-                    if (toolHeight <= 0 || toolHeight >= 818) {
+                    if ((toolHeight <= 0 || toolHeight >= 818)&&(toolWidth <= 0 || toolHeight >= 818)) {
+                        JOptionPane.showMessageDialog(null, "Enter valid height and width");
+                    }
+                    else if (toolHeight <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid height");
                     }
-                    if (toolWidth <= 0 || toolHeight >= 818) {
+                    else if (toolWidth <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid width");
                     }
                 }
