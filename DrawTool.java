@@ -30,16 +30,22 @@ public class DrawTool {
     public int getY(){
         return yPos;
     }
-    public void setWidth(int width) {
-        if (width > 0 && width < 818)
+    public void setWidth(int width) throws NumberFormatException {
+        if (width > 0 && width < 818) {
             this.width = width;
+        } else {
+            throw new NumberFormatException();
+        }
     }
     public int getWidth(){
         return width;
     }
-    public void setHeight(int height) {
-        if (width > 0 && width < 818)
+    public void setHeight(int height) throws NumberFormatException {
+        if (height > 0 && height < 818) {
             this.height = height;
+        } else {
+            throw new NumberFormatException();
+        }
     }
 
     public int getHeight(){

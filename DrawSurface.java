@@ -6,18 +6,27 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+
 //TODO: Create boolean "if drawing", then make sure if drawing is false, do not show the draw tool on the canvas (should fix cursor displaying shape problem)
 //TODO: Make sure to include if exit for if mouse leaves canvas in conditional block
-        //This can be done using mouse listener class (link in discord) (mousePressed/mouseClicked/mouseExited/other??)
+//This can be done using mouse listener class (link in discord) (mousePressed/mouseClicked/mouseExited/other??)
+
+
 
 
 class DrawSurface extends JPanel {
 
+
     DrawTool customTool = new DrawTool();
+
 
     static BufferedImage paintedImage = new BufferedImage(852, 680, BufferedImage.TYPE_INT_ARGB);
 
+
     public boolean isDrawing;
+
+
+
 
 
 
@@ -33,12 +42,14 @@ class DrawSurface extends JPanel {
             }
         });
 
+
         //listener for Dragging
         addMouseMotionListener(new MouseAdapter(){
             public void mouseDragged(MouseEvent e){
                 moveTool(e.getX(), e.getY());
             }
         });
+
 
         addMouseMotionListener(new MouseAdapter() {
             @Override
@@ -47,6 +58,7 @@ class DrawSurface extends JPanel {
             }
         });
     }
+
 
     /**
      * @param x = coordinate x corresponding to location on canvas in width
@@ -57,6 +69,7 @@ class DrawSurface extends JPanel {
         final int CURR_X = customTool.getX();
         final int CURR_Y = customTool.getY();
 
+
         if((CURR_X != x) || (CURR_Y != y)){
             if (isDrawing == true) {
                 customTool.setX(x);
@@ -65,6 +78,8 @@ class DrawSurface extends JPanel {
             }
         }
     }
+
+
 
 
     /**
@@ -88,12 +103,14 @@ class DrawSurface extends JPanel {
         }
     }
 
+
     public void clearCanvas(Color bg) {
         Graphics g = paintedImage.getGraphics();
         g.setColor(bg);
         g.fillRect(0,0,852,680);
         repaint();
     }
+
 
     /**
      * Saves image to disk
@@ -113,6 +130,7 @@ class DrawSurface extends JPanel {
         }
     }
 
+
     /**
      * Opens image from disk
      * @throws IOException
@@ -128,7 +146,6 @@ class DrawSurface extends JPanel {
         }
     }
 
-
     public boolean askSave() {
         boolean isSaving;
         int choice = JOptionPane.showConfirmDialog(null, "Would you like to save your current work?", "", JOptionPane.YES_NO_OPTION);
@@ -140,6 +157,7 @@ class DrawSurface extends JPanel {
         }
         return isSaving;
     }
+
 
     public void newCanvas(Color bg) throws IOException {
         if (askSave()) {
@@ -157,5 +175,6 @@ class DrawSurface extends JPanel {
             clearCanvas(Color.WHITE);
         }
     }
+
 
 }
