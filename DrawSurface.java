@@ -128,6 +128,7 @@ class DrawSurface extends JPanel {
         }
     }
 
+
     public boolean askSave() {
         boolean isSaving;
         int choice = JOptionPane.showConfirmDialog(null, "Would you like to save your current work?", "", JOptionPane.YES_NO_OPTION);
