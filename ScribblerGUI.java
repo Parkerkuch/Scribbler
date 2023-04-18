@@ -52,7 +52,7 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
 
     private JButton circleButton;
 
-    private JButton triangleButton;
+    private JButton ovalButton;
 
     private JButton redButton;
     private JButton orangeButton;
@@ -245,7 +245,7 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
 
         //Shapes Buttons
         squareButton = new JButton();
-        triangleButton = new JButton();
+        ovalButton = new JButton();
         rectangleButton = new JButton();
         circleButton = new JButton();
 
@@ -255,11 +255,11 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
         squareButton.setIcon(squareIcon);
         toolbar.add(squareButton);
 
-        Icon triangleIcon = new ImageIcon("triangle.png");
-        triangleButton.setBounds(350, 10, 40,40);
-        triangleButton.setMargin(new Insets(0,0,0,0));
-        triangleButton.setIcon(triangleIcon);
-        toolbar.add(triangleButton);
+        Icon ovalIcon = new ImageIcon("oval.png");
+        ovalButton.setBounds(350, 10, 40,40);
+        ovalButton.setMargin(new Insets(0,0,0,0));
+        ovalButton.setIcon(ovalIcon);
+        toolbar.add(ovalButton);
 
         Icon rectangleIcon = new ImageIcon("rectangle.png");
         rectangleButton.setBounds(400, 10, 40,40);
@@ -381,7 +381,7 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
 
         squareButton.addActionListener(this);
         rectangleButton.addActionListener(this);
-        triangleButton.addActionListener(this);
+        ovalButton.addActionListener(this);
         circleButton.addActionListener(this);
 
 
@@ -448,7 +448,7 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
 
         } else if(e.getSource() == rectangleButton){
 
-        } else if(e.getSource() == triangleButton){
+        } else if(e.getSource() == ovalButton){
 
         } else if(e.getSource() == circleButton){
 
