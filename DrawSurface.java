@@ -9,10 +9,15 @@ import java.io.IOException;
 //TODO: Create boolean "if drawing", then make sure if drawing is false, do not show the draw tool on the canvas (should fix cursor displaying shape problem)
 //TODO: Make sure to include if exit for if mouse leaves canvas in conditional block
         //This can be done using mouse listener class (link in discord) (mousePressed/mouseClicked/mouseExited/other??)
+
+
 class DrawSurface extends JPanel {
+
     DrawTool customTool = new DrawTool();
 
     static BufferedImage paintedImage = new BufferedImage(852, 680, BufferedImage.TYPE_INT_ARGB);
+
+    public boolean isDrawing;
 
 
 
@@ -23,6 +28,7 @@ class DrawSurface extends JPanel {
         //Listener for single click
         addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent e){
+                isDrawing = true;
                 moveTool(e.getX(), e.getY());
             }
         });
@@ -31,6 +37,13 @@ class DrawSurface extends JPanel {
         addMouseMotionListener(new MouseAdapter(){
             public void mouseDragged(MouseEvent e){
                 moveTool(e.getX(), e.getY());
+            }
+        });
+
+        addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                isDrawing = false;
             }
         });
     }
@@ -45,9 +58,11 @@ class DrawSurface extends JPanel {
         final int CURR_Y = customTool.getY();
 
         if((CURR_X != x) || (CURR_Y != y)){
-            customTool.setX(x);
-            customTool.setY(y);
-            repaint(customTool.getX(), customTool.getY(), customTool.getWidth(), customTool.getHeight());
+            if (isDrawing == true) {
+                customTool.setX(x);
+                customTool.setY(y);
+                repaint(customTool.getX(), customTool.getY(), customTool.getWidth(), customTool.getHeight());
+            }
         }
     }
 
@@ -61,18 +76,20 @@ class DrawSurface extends JPanel {
         super.paintComponent(g);
         Graphics g2 = paintedImage.getGraphics();
         if (DrawTool.isSquare == true) {
-            customTool.paintSquare(g2);
-
+            if (isDrawing == true)
+                customTool.paintSquare(g2);
         }
         else {
-            customTool.paintRound(g2);
+            if (isDrawing == true)
+                customTool.paintRound(g2);
         }
-        g.drawImage(paintedImage, 0, 0, null);
+        if (isDrawing == true) {
+            g.drawImage(paintedImage, 0, 0, null);
+        }
     }
 
     public void clearCanvas(Color bg) {
         Graphics g = paintedImage.getGraphics();
-        //System.out.println("Got here " + bg);
         g.setColor(bg);
         g.fillRect(0,0,852,680);
         repaint();
@@ -139,4 +156,5 @@ class DrawSurface extends JPanel {
             clearCanvas(Color.WHITE);
         }
     }
+
 }
