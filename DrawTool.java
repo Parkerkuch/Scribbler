@@ -6,6 +6,7 @@ public class DrawTool {
     public static int width;
     public static int height;
     public static Color drawColor;
+
     public static boolean isSquare;
 
     public DrawTool() {
@@ -30,14 +31,17 @@ public class DrawTool {
         return yPos;
     }
     public void setWidth(int width) {
-        this.width = width;
+        if (width > 0 && width < 818)
+            this.width = width;
     }
     public int getWidth(){
         return width;
     }
     public void setHeight(int height) {
-        this.height = height;
+        if (width > 0 && width < 818)
+            this.height = height;
     }
+
     public int getHeight(){
         return height;
     }

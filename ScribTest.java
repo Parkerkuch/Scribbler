@@ -8,6 +8,7 @@ import java.awt.*;
 
 import static junit.framework.TestCase.assertEquals;
 
+//TODO: Need to figure out how to get invalid height and width values working properly now that sliders are implemented
 public class ScribTest {
     @Test(expected = NumberFormatException.class)
     public void testHeightBadVal(){

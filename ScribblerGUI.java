@@ -386,7 +386,7 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
 
 
         //Creating sliders for height and width
-        heightSlider = new JSlider(1, 60, 20);
+        heightSlider = new JSlider(5, 60, 20);
         heightSlider.setBounds(186, -5, 50, 50);
         heightSlider.setBorder(new EmptyBorder(0,0,0,0));
         heightSlider.addChangeListener( this);
@@ -399,7 +399,7 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
         heightLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
         toolbar.add(heightLabel);
 
-        widthSlider = new JSlider(1, 60, 20);
+        widthSlider = new JSlider(5, 60, 20);
         widthSlider.setBounds(186, 35, 50, 50);
         widthSlider.setBorder(new EmptyBorder(0,0,0,0));
         widthSlider.addChangeListener(this);
@@ -435,73 +435,15 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
 
         //When user clicks, allow them to customize width and height of tool
         if (e.getSource() == customToolButton) {
+            DrawTool.drawColor = currentColorButton.getBackground();
             DrawTool.isSquare = true;
-            JTextField heightInput = new JTextField();
-            JTextField widthInput = new JTextField();
-            Object[] penSettings = {
-                    "Height: ", heightInput,
-                    "Width: ", widthInput,
-            };
-
-            int option = JOptionPane.showConfirmDialog(null, penSettings, "Custom Tool Settings", JOptionPane.OK_CANCEL_OPTION);
-            if (option == JOptionPane.OK_OPTION) {
-                try {
-                    toolHeight = Integer.parseInt(heightInput.getText());
-                    toolWidth = Integer.parseInt(widthInput.getText());
-                    DrawTool.height = toolHeight;
-                    DrawTool.width = toolWidth;
-                    DrawTool.drawColor = Color.RED;
-
-                    if ((toolHeight <= 0 || toolHeight >= 818)&&(toolWidth <= 0 || toolHeight >= 818)) {
-                        JOptionPane.showMessageDialog(null, "Enter valid height and width");
-                    }
-                    else if (toolHeight <= 0 || toolHeight >= 818) {
-                        JOptionPane.showMessageDialog(null, "Enter a valid height");
-                    }
-                    else if (toolWidth <= 0 || toolHeight >= 818) {
-                        JOptionPane.showMessageDialog(null, "Enter a valid width");
-                    }
-
-                }
-                catch (NumberFormatException n){
-                    JOptionPane.showMessageDialog(null, "Enter a valid integer");
-                }
-            }
         } else if (e.getSource() == eraseButton) {
-            JTextField heightInput = new JTextField();
-            JTextField widthInput = new JTextField();
-            int toolHeight;
-            int toolWidth;
-
-            Object[] eraserSettings = {
-                    "Height: ", heightInput,
-                    "Width: ", widthInput
-            };
-
-            int option = JOptionPane.showConfirmDialog(null, eraserSettings, "Eraser Settings", JOptionPane.OK_CANCEL_OPTION);
-            if (option == JOptionPane.OK_OPTION) {
-                try {
-                    toolHeight = Integer.parseInt(heightInput.getText());
-                    toolWidth = Integer.parseInt(widthInput.getText());
-                    DrawTool.height = toolHeight;
-                    DrawTool.width = toolWidth;
-                    if (backgroundColor != Color.WHITE) {
-                        DrawTool.drawColor = backgroundColor;
-                    } else {
-                        DrawTool.drawColor = Color.WHITE;
-                    }
-                    if ((toolHeight <= 0 || toolHeight >= 818) && (toolWidth <= 0 || toolHeight >= 818)) {
-                        JOptionPane.showMessageDialog(null, "Enter valid height and width");
-                    } else if (toolHeight <= 0 || toolHeight >= 818) {
-                        JOptionPane.showMessageDialog(null, "Enter a valid height");
-                    } else if (toolWidth <= 0 || toolHeight >= 818) {
-                        JOptionPane.showMessageDialog(null, "Enter a valid width");
-                    }
-                } catch (NumberFormatException n) {
-                    JOptionPane.showMessageDialog(null, "Enter a valid integer");
-                }
+            if (backgroundColor != Color.WHITE) {
+                DrawTool.drawColor = backgroundColor;
+            } else {
+                DrawTool.drawColor = Color.WHITE;
             }
-
+            //TODO: Shape Buttons
         } else if(e.getSource() == squareButton){
 
         } else if(e.getSource() == rectangleButton){
@@ -554,16 +496,26 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
             }
 
         } else if (e.getSource() == chiselButton) {
+                DrawTool.drawColor = currentColorButton.getBackground();
                 DrawTool.height = 40;
                 DrawTool.width = 5;
+                heightSlider.setValue(40);
+                widthSlider.setValue(5);
         } else if (e.getSource() == fineButton) {
-            DrawTool.height = 4;
-            DrawTool.width = 4;
+            DrawTool.drawColor = currentColorButton.getBackground();
+            DrawTool.height = 5;
+            DrawTool.width = 5;
+            heightSlider.setValue(5);
+            widthSlider.setValue(5);
         } else if (e.getSource() == roundButton) {
+            DrawTool.drawColor = currentColorButton.getBackground();
             DrawTool.isSquare = false;
         } else if (e.getSource() == brushButton) {
+            DrawTool.drawColor = currentColorButton.getBackground();
             DrawTool.height = 25;
             DrawTool.width = 8;
+            heightSlider.setValue(25);
+            widthSlider.setValue(8);
         } else if (e.getSource() == backgroundButton) {
             int choice = JOptionPane.showConfirmDialog(null, "WARNING: Changing background color clears the current canvas. Would you still like to proceed?", "", JOptionPane.YES_NO_OPTION);
             if (choice == JOptionPane.YES_OPTION) {
@@ -613,7 +565,7 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
     @Override
     public void stateChanged(ChangeEvent e) {
        DrawTool.height = heightSlider.getValue();
-       DrawTool.width = heightSlider.getValue();
+       DrawTool.width = widthSlider.getValue();
     }
 }
 
