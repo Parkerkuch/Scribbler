@@ -4,12 +4,14 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
 
-public class ScribblerGUI extends JFrame implements ActionListener {
+public class ScribblerGUI extends JFrame implements ActionListener, ChangeListener {
     private  DrawSurface canvasPanel;
     private JPanel scribPane;
     private  JMenuBar menuBar;
@@ -76,6 +78,13 @@ public class ScribblerGUI extends JFrame implements ActionListener {
     //Customization values
     public int toolHeight;
     public int toolWidth;
+
+    public JSlider heightSlider;
+    public JSlider widthSlider;
+
+    public JLabel heightLabel;
+
+    public JLabel widthLabel;
 
 
     /**
@@ -345,7 +354,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
 
 
-        //Button Action Listeners
+        //Action Listeners
         customToolButton.addActionListener(this);
         customColorButton.addActionListener(this);
         eraseButton.addActionListener(this);
@@ -355,6 +364,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
         roundButton.addActionListener(this);
         brushButton.addActionListener(this);
         backgroundButton.addActionListener(this);
+
 
         redButton.addActionListener(this);
         orangeButton.addActionListener(this);
@@ -376,24 +386,27 @@ public class ScribblerGUI extends JFrame implements ActionListener {
 
 
         //Creating sliders for height and width
-        JSlider heightSlider = new JSlider(0, 60, 20);
+        heightSlider = new JSlider(1, 60, 20);
         heightSlider.setBounds(186, -5, 50, 50);
         heightSlider.setBorder(new EmptyBorder(0,0,0,0));
+        heightSlider.addChangeListener( this);
         heightSlider.setOpaque(false);
         toolbar.add(heightSlider);
 
-        JLabel heightLabel = new JLabel("Height");
+
+        heightLabel = new JLabel("Height");
         heightLabel.setBounds(193,18, 50,30);
         heightLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
         toolbar.add(heightLabel);
 
-        JSlider widthSlider = new JSlider(0, 60, 20);
+        widthSlider = new JSlider(1, 60, 20);
         widthSlider.setBounds(186, 35, 50, 50);
         widthSlider.setBorder(new EmptyBorder(0,0,0,0));
+        widthSlider.addChangeListener(this);
         widthSlider.setOpaque(false);
         toolbar.add(widthSlider);
 
-        JLabel widthLabel = new JLabel("Width");
+        widthLabel = new JLabel("Width");
         widthLabel.setBounds(193,58, 50,30);
         widthLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
         toolbar.add(widthLabel);
@@ -592,5 +605,16 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                 backgroundColor = Color.WHITE;
             }
         }
+
+    /**
+     *
+     * @param e  a ChangeEvent object
+     */
+    @Override
+    public void stateChanged(ChangeEvent e) {
+       DrawTool.height = heightSlider.getValue();
+       DrawTool.width = heightSlider.getValue();
     }
+}
+
 
