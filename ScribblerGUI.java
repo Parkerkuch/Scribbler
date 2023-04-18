@@ -472,26 +472,23 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                     toolWidth = Integer.parseInt(widthInput.getText());
                     DrawTool.height = toolHeight;
                     DrawTool.width = toolWidth;
-                    if(backgroundColor != Color.WHITE){
+                    if (backgroundColor != Color.WHITE) {
                         DrawTool.drawColor = backgroundColor;
-                    }
-                    else {
+                    } else {
                         DrawTool.drawColor = Color.WHITE;
                     }
-                    if ((toolHeight <= 0 || toolHeight >= 818)&&(toolWidth <= 0 || toolHeight >= 818)) {
+                    if ((toolHeight <= 0 || toolHeight >= 818) && (toolWidth <= 0 || toolHeight >= 818)) {
                         JOptionPane.showMessageDialog(null, "Enter valid height and width");
-                    }
-                    else if (toolHeight <= 0 || toolHeight >= 818) {
+                    } else if (toolHeight <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid height");
-                    }
-                    else if (toolWidth <= 0 || toolHeight >= 818) {
+                    } else if (toolWidth <= 0 || toolHeight >= 818) {
                         JOptionPane.showMessageDialog(null, "Enter a valid width");
                     }
-                }
-                catch (NumberFormatException n) {
+                } catch (NumberFormatException n) {
                     JOptionPane.showMessageDialog(null, "Enter a valid integer");
                 }
             }
+
         } else if(e.getSource() == squareButton){
 
         } else if(e.getSource() == rectangleButton){
@@ -560,6 +557,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
                 ColorChooser cc2 = new ColorChooser();
                 if (cc2.getCC() != null) {
                     backgroundColor = cc2.getCC();
+                    canvasPanel.clearCanvas(Color.WHITE);
                     canvasPanel.clearCanvas(backgroundColor);
                 }
             }
@@ -574,6 +572,7 @@ public class ScribblerGUI extends JFrame implements ActionListener {
             }
             backgroundColor = Color.WHITE;
         } else if (e.getSource() == clearButton) {
+            canvasPanel.clearCanvas(Color.WHITE);
             canvasPanel.clearCanvas(backgroundColor);
         }
 
