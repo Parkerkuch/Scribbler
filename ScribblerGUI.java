@@ -250,25 +250,25 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
         circleButton = new JButton();
 
         Icon squareIcon = new ImageIcon("square.png");
-        squareButton.setBounds(300, 10, 40,40);
+        squareButton.setBounds(312, 10, 40,40);
         squareButton.setMargin(new Insets(0,0,0,0));
         squareButton.setIcon(squareIcon);
         toolbar.add(squareButton);
 
         Icon ovalIcon = new ImageIcon("oval.png");
-        ovalButton.setBounds(350, 10, 40,40);
+        ovalButton.setBounds(362, 10, 40,40);
         ovalButton.setMargin(new Insets(0,0,0,0));
         ovalButton.setIcon(ovalIcon);
         toolbar.add(ovalButton);
 
         Icon rectangleIcon = new ImageIcon("rectangle.png");
-        rectangleButton.setBounds(400, 10, 40,40);
+        rectangleButton.setBounds(412, 10, 40,40);
         rectangleButton.setMargin(new Insets(0,0,0,0));
         rectangleButton.setIcon(rectangleIcon);
         toolbar.add(rectangleButton);
 
         Icon circleIcon = new ImageIcon("circle.png");
-        circleButton.setBounds(450, 10, 40,40);
+        circleButton.setBounds(462, 10, 40,40);
         circleButton.setMargin(new Insets(0,0,0,0));
         circleButton.setIcon(circleIcon);
         toolbar.add(circleButton);
