@@ -7,10 +7,6 @@ import java.io.File;
 import java.io.IOException;
 
 
-//TODO: Create boolean "if drawing", then make sure if drawing is false, do not show the draw tool on the canvas (should fix cursor displaying shape problem)
-//TODO: Make sure to include if exit for if mouse leaves canvas in conditional block
-//This can be done using mouse listener class (link in discord) (mousePressed/mouseClicked/mouseExited/other??)
-
 
 
 
@@ -36,7 +32,9 @@ class DrawSurface extends JPanel {
     public DrawSurface(){
         //Listener for single click
         addMouseListener(new MouseAdapter(){
+            @Override
             public void mousePressed(MouseEvent e){
+                System.out.println("Pressed");
                 isDrawing = true;
                 moveTool(e.getX(), e.getY());
             }
@@ -45,15 +43,26 @@ class DrawSurface extends JPanel {
 
         //listener for Dragging
         addMouseMotionListener(new MouseAdapter(){
+            @Override
             public void mouseDragged(MouseEvent e){
+                isDrawing = true;
                 moveTool(e.getX(), e.getY());
             }
         });
 
 
-        addMouseMotionListener(new MouseAdapter() {
+        addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
+                System.out.println("Released");
+                isDrawing = false;
+            }
+        });
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {
+                System.out.println("Exited");
                 isDrawing = false;
             }
         });
@@ -98,9 +107,8 @@ class DrawSurface extends JPanel {
             if (isDrawing == true)
                 customTool.paintRound(g2);
         }
-        if (isDrawing == true) {
-            g.drawImage(paintedImage, 0, 0, null);
-        }
+        g.drawImage(paintedImage, 0, 0, null);
+
     }
 
 
