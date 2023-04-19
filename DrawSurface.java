@@ -34,7 +34,6 @@ class DrawSurface extends JPanel {
         addMouseListener(new MouseAdapter(){
             @Override
             public void mousePressed(MouseEvent e){
-                System.out.println("Pressed");
                 isDrawing = true;
                 moveTool(e.getX(), e.getY());
             }
@@ -54,7 +53,6 @@ class DrawSurface extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                System.out.println("Released");
                 isDrawing = false;
             }
         });
@@ -62,7 +60,6 @@ class DrawSurface extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseExited(MouseEvent e) {
-                System.out.println("Exited");
                 isDrawing = false;
             }
         });
@@ -129,7 +126,6 @@ class DrawSurface extends JPanel {
         int value = fc.showSaveDialog(null);
         if (value == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
-            //System.out.println("filename " + file.getAbsolutePath());
             ImageIO.write(paintedImage, "png", file);
             return true;
         }
