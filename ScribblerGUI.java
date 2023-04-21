@@ -465,15 +465,6 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
             } else {
                 DrawTool.drawColor = Color.WHITE;
             }
-            //TODO: Shape Buttons
-        } else if(e.getSource() == squareButton){
-
-        } else if(e.getSource() == rectangleButton){
-
-        } else if(e.getSource() == ovalButton){
-
-        } else if(e.getSource() == circleButton){
-
         } else if (e.getSource() == redButton) {
             DrawTool.drawColor = Color.RED;
             currentColorButton.setBackground(Color.RED);
