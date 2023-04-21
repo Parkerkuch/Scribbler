@@ -7,9 +7,6 @@ import java.io.File;
 import java.io.IOException;
 
 
-
-
-
 class DrawSurface extends JPanel {
 
 
@@ -18,7 +15,9 @@ class DrawSurface extends JPanel {
 
     static BufferedImage paintedImage = new BufferedImage(852, 680, BufferedImage.TYPE_INT_ARGB);
 
-
+    /**
+     * boolean variable that will check to see if it is drawing or not.
+     */
     public boolean isDrawing;
 
 
@@ -109,6 +108,10 @@ class DrawSurface extends JPanel {
     }
 
 
+    /**
+     * function clears the canvas and sets it to back round color (bg)
+     * @param bg is the backround color
+     */
     public void clearCanvas(Color bg) {
         Graphics g = paintedImage.getGraphics();
         g.setColor(bg);
@@ -150,6 +153,11 @@ class DrawSurface extends JPanel {
         }
     }
 
+    /**
+     * checks to see if the file is correctly saving
+     * @return returns a boolean true, if the file is saving
+     * false, if the file is not
+     */
     public boolean askSave() {
         boolean isSaving;
         int choice = JOptionPane.showConfirmDialog(null, "Would you like to save your current work?", "", JOptionPane.YES_NO_OPTION);
@@ -163,6 +171,11 @@ class DrawSurface extends JPanel {
     }
 
 
+    /**
+     * creating a new canvas, sets the backround color for the new canvas.
+     * @param bg is the new backround color being set on the canvas
+     * @throws IOException checks of the file is saved or not. If runtime exception it will throw an error.
+     */
     public void newCanvas(Color bg) throws IOException {
         if (askSave()) {
             boolean saveRet;

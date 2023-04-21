@@ -10,7 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-
+/**
+ * This is the GUI class and stores logical code
+ * @author Scribbler
+ *
+ */
 public class ScribblerGUI extends JFrame implements ActionListener, ChangeListener {
     private  DrawSurface canvasPanel;
     private JPanel scribPane;
@@ -75,20 +79,38 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
 
     private JButton currentColorButton;
 
-    //Customization values
+    /**
+     * variable for tool height
+     */
     public int toolHeight;
+
+    /**
+     * variable for tool width
+     */
     public int toolWidth;
 
+    /**
+     * JSlider for height
+     */
     public JSlider heightSlider;
+    /**
+     * JSlider for width
+     */
     public JSlider widthSlider;
 
+    /**
+     * Jlabel for height
+     */
     public JLabel heightLabel;
 
+    /**
+     * JLabel for width  
+     */
     public JLabel widthLabel;
 
 
     /**
-     * Create the frame.
+     * Creates the frame, Sets bounds and sets title to Scribbler
      */
     public ScribblerGUI() {
         //frame stuff
@@ -427,8 +449,8 @@ public class ScribblerGUI extends JFrame implements ActionListener, ChangeListen
 
 
     /**
+     * Takes user input to customize the tools available along with features implemented
      * @param e Button being clicked by the user
-     * @method Reads ActionEvents from user
      */
     @Override
     public void actionPerformed(ActionEvent e) {

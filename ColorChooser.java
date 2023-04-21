@@ -3,10 +3,18 @@
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * colorChooser extends JFrame
+ */
 public class ColorChooser extends
         JFrame {
-
+    /**
+     * initialColor Variable
+     */
     public Color initialColor;
+    /**
+     * newColor variable
+     */
     public Color newColor;
 
     /**
